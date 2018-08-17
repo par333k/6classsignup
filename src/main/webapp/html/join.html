@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/common.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>회원가입</h2>
+        <div class="join-container">
+            <form class="col-md-6 logpad">
+                <div class="form-group">
+                    <label for="user">이용구분</label>
+                    <select class="form-control" id="user">
+                        <option>학생</option>
+                        <option>교수</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="no">학번(교번)</label>
+                    <input type="number" class="form-control" id="no">
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="tel">연락처</label>
+                    <input type="tel" class="form-control" id="tel">
+                </div>
+                <div class="form-group">
+                    <label for="major">전공</label>
+                    <input type="text" class="form-control" id="major">
+                </div>
+                <div class="form-group selectyear">
+                    <label for="year">학년</label>
+                    <select class="form-control" id="year">
+                        <option>1학년</option>
+                        <option>2학년</option>
+                        <option>3학년</option>
+                        <option>4학년</option>
+                        <option>5학년 이상</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+                <hr>
+                <input type="button" class="btn btn-primary" name="login" value="회원가입" style="width: 100%">
+            </form>
+        </div>
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        $("#user").change(function() {
+            if ($("#user").val() == "교수") {
+                $(".selectyear").hide();
+            } else {
+                $(".selectyear").show();
+            }
+        });
+    </script>
+</body>
+
+</html>
