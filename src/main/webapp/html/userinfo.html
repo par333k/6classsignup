@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>회원가입</title>
+    <title>회원정보</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/common.css">
 </head>
 
 <body>
     <div class="container">
-        <h2>회원가입</h2>
+        <h2>회원정보</h2>
         <div class="join-container">
             <form class="col-md-6 logpad">
                 <div class="form-group">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label for="no">학번(교번)</label>
-                    <input type="number" class="form-control" id="no">
+                    <input type="number" class="form-control" id="no" value="1111" readonly>
                 </div>
                 <div class="form-group">
                     <label for="password">비밀번호</label>
@@ -58,7 +58,7 @@
                     <input type="email" class="form-control" id="email">
                 </div>
                 <hr>
-                <button id="joinBtn" type="button" class="btn btn-primary" style="width: 100%">회원가입</button>
+                <button id="joinBtn" type="button" class="btn btn-primary" style="width: 100%">수정하기</button>
             </form>
         </div>
     </div>
@@ -67,46 +67,20 @@
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
-        let userSlt = "http://192.168.0.30:8000/member/add0";
+        $.getJSON('http://192.168.0.30:8000/member/get', {
+            id: 1
+        }).done(
+            function (result) {
+                data = result[0];
+                console.log(data);
 
-        $("#user").change(function () {
-            if ($("#user").val() == "교수") {
-                $(".selectyear").hide();
-                userSlt = "http://192.168.0.30:8000/member/add1";
-            } else {
-                $(".selectyear").show();
-            }
-        });
-
-        $("#joinBtn").click(function () {
-
-            $.ajax(userSlt, {
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    no: $(no).val(),
-                    password: $(password).val(),
-                    name: $('#name').val(),
-                    tel: $(tel).val(),
-                    major: $(major).val(),
-                    email: $(email).val(),
-                    year: $(year).val(),
-                },
-                success: function (data) {
-
-                    alert(data);
-                    //console.log(data);
-                    console.log("완료");
-                    if (data == "0") {
-                        alert("성공입니다!");
-                        //location.href = 'index.html';
-                    } else {
-                        alert("오류입니다!");
-                        console.log(data.error);
-                    }
-                }
+                $(no).val(data.sNo);
+                $('#name').val(data.sName);
+                $(tel).val(data.sTel);
+                $(major).val(data.sMajor);
+                $(year).val(data.sYear);
+                $(email).val(data.sEmail);
             });
-        });
     </script>
 </body>
 
