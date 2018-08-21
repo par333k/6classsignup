@@ -17,9 +17,9 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd">
         
   <!-- 웹 컴포넌트 (페이지 컨트롤러 등) 만 관리한다. -->  
-  <context:component-scan base-package="bitcamp.assignment.web">
+  <context:component-scan base-package="bitcamp.newdeal.web">
     <context:exclude-filter type="regex" 
-                            expression="bitcamp.assignment.web.json.*"/>
+                            expression="bitcamp.newdeal.web.json.*"/>
   </context:component-scan>
 
   <!-- Spring WebMVC 관련 애노테이션을 처리할 객체들을 등록한다. -->

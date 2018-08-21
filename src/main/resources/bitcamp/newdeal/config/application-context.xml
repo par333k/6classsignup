@@ -17,9 +17,9 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd">
         
 
-  <context:component-scan base-package="bitcamp.assignment">
+  <context:component-scan base-package="bitcamp.newdeal">
     <context:exclude-filter type="regex" 
-                            expression="bitcamp.assignment.web.*"/>
+                            expression="bitcamp.newdeal.web.*"/>
   </context:component-scan>
   
   <!-- 트랜잭션 관련 애노테이션을 처리할 객체들을 등록한다. -->
@@ -40,7 +40,7 @@
   <aop:config>
       <!-- 트랜잭션을 적용할 대상의 규칙을 선언 -->
       <aop:pointcut id="serviceOperation" 
-        expression="execution(* bitcamp.assignment.service.*.*(..))"/>
+        expression="execution(* bitcamp.newdeal.service.*.*(..))"/>
       
       <!-- 대상에 대해 어떤 트랜잭션을 적용할 지 설정한다. -->
       <aop:advisor advice-ref="txAdvice" 
@@ -80,12 +80,12 @@
   -->
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
     <property name="basePackage" 
-              value="bitcamp.assignment.dao" />
+              value="bitcamp.newdeal.dao" />
   </bean>
   
   <!-- .properties 파일을 읽어서 그 데이터를 보관할 객체를 등록한다. -->
   <context:property-placeholder 
-      location="classpath:bitcamp/assignment/config/jdbc.properties"/>
+      location="classpath:bitcamp/newdeal/config/jdbc.properties"/>
 
  
 </beans>
