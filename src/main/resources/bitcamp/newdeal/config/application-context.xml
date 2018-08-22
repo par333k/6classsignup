@@ -57,9 +57,9 @@
         class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource"/>  
     <property name="mapperLocations" 
-              value="classpath*:bitcamp/assignment/sql/**/*.xml" />  
+              value="classpath*:bitcamp/newdeal/mapper/**/*.xml" />  
     <property name="typeAliasesPackage" 
-              value="bitcamp.assignment.domain"/>               
+              value="bitcamp.newdeal.domain"/>               
   </bean>
 
   <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
@@ -80,7 +80,7 @@
   -->
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
     <property name="basePackage" 
-              value="bitcamp.newdeal.dao" />
+              value="bitcamp.newdeal.repository" />
   </bean>
   
   <!-- .properties 파일을 읽어서 그 데이터를 보관할 객체를 등록한다. -->

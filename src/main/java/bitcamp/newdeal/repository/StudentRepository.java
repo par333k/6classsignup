@@ -1,13 +1,13 @@
 package bitcamp.newdeal.repository;
 
-import java.util.List;
 
-import bitcamp.newdeal.domain.Lecture;
+import java.util.Map;
+
 import bitcamp.newdeal.domain.Student;
 
 public interface StudentRepository {
 
-    List<Lecture> findLectureByStudentNo(int sNum);
+    Student findLectureByStudentNo(Map<String, Object> params);
     
     Student selectOne (int sNum);
     

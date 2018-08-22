@@ -10,7 +10,7 @@ public interface ProfessorService {
 
     List<Lecture> list(int pNum);
 
-    Professor get(int pNum);
+    Professor get(int professorNo, String professorPwd);
 
     int add(Professor professor);
     

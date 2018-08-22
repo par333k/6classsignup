@@ -9,7 +9,7 @@ public interface StudentService {
 
         List<Lecture> list(int sNum);
         
-        Student get(int sNum);
+        Student get(int studentNo, String studentPwd);
         
         int add(Student student);
         

@@ -1,14 +1,19 @@
 package bitcamp.newdeal.domain;
 
-public class Professor {
-    private int pNum;
-    private int professorNo;
-    private String professorName;
-    private String professorPwd;
-    private String professorMajor;
-    private String professorTel;
-    private String professorEmail;
-    private String professorClassAble;
+import java.io.Serializable;
+
+public class Professor implements Serializable{
+    private static final long serialVersionUID = 1L;
+    
+    protected int pNum;
+    protected int professorNo;
+    protected String professorName;
+    protected String professorPwd;
+    protected String professorMajor;
+    protected String professorTel;
+    protected String professorEmail;
+    protected int professorLecture;
+    protected String professorClassAble;
     
     
 

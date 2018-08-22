@@ -4,25 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bitcamp.newdeal.repository.ProfessorRepository">
 
-  <resultMap type="member" id="memberMap">
-    <id column="MNO" property="no"/>
-    <result column="NAME" property="name"/>
-    <result column="EMAIL" property="email"/>
-    <result column="PWD" property ="password"/>
+<resultMap type="professor" id="professorMap">
+    <id column="pNum" property="pNum"/>
+    <result column="pNo" property="professorNo"/>
+    <result column="pPassword" property="professorPwd"/>
+    <result column="pName" property ="professorName"/>
+    <result column="pTel" property="professorTel"/>
+    <result column="pMajor" property="professorMajor"/>
+    <result column="pEmail" property ="professorEmail"/>
+    <result column="pLecture" property="professorLecture"/>
+    <result column="pClassAble" property="professorClassAble"/>
+    
   </resultMap>
 
-  <insert id="insert" 
-          parameterType="member">
-    insert into P2_MEMB(EMAIL,NAME,PWD) 
-    values(#{email},#{name},password(#{password}))
-  </insert>
-
-  <select id="findByEmailAndPassword" 
+ <select id="findLectureByProfessorNo" 
           parameterType="map"
-          resultMap="memberMap">
-    select MNO,EMAIL,NAME 
-    from P2_MEMB
-    where EMAIL=#{email} and PWD=password(#{password})
+          resultMap="professorMap">
+    select pNum, pNo, pName 
+    from P3_Professor
+    where pNo=#{professorNo} and pPassword=password(#{professorPwd})
   </select>
 </mapper>
 

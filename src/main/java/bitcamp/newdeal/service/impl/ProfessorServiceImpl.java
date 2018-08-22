@@ -1,5 +1,6 @@
 package bitcamp.newdeal.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -25,9 +26,11 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public Professor get(int pNum) {
-        // TODO Auto-generated method stub
-        return null;
+    public Professor get(int professorNo, String professorPwd) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("professorNo", professorNo);
+        params.put("professorPwd", professorPwd);
+        return professorRepository.findLectureByProfessorNo(params);
     }
 
     @Override
