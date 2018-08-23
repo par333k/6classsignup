@@ -24,7 +24,16 @@ router.get('/get', (req, res) => {
         if (err) {
             return;
         }
-        console.log(results);
+        res.send(results);
+    });
+});
+
+router.get('/getPro', (req, res) => {
+
+    memberdao.getPro(req.query, (err, results) => {
+        if (err) {
+            return;
+        }
         res.send(results);
     });
 });
@@ -51,34 +60,66 @@ router.post('/add1', (req, res) => {
             res.send("0");
         }
     }); 
-
-    return;
 });
 
-router.get('/update', (req, res) => {
-    res.writeHead(200, {'Content-Type':'text/plain;charset=UTF-8'});
-    memberdao.update(req.query, (err, result) => {
+router.post('/update', (req, res) => {
+    memberdao.update(req.body, (err, result) => {
         if (err) {
-            res.end('DB 조회 중 예외 발생!')
-            return;
+            res.send("1");
+        } else {
+            res.send("0");
         }
-        
-        res.write('변경 성공!')
-        res.end();
     });
 });
 
-router.get('/delete', (req, res) => {
-    res.writeHead(200, {'Content-Type':'text/plain;charset=UTF-8'});
-    memberdao.remove(req.query, (err, result) => {
+router.post('/updatePro', (req, res) => {
+    memberdao.updatePro(req.body, (err, result) => {
         if (err) {
-            res.end('DB 조회 중 예외 발생!')
-            return;
+            res.send("1");
+        } else {
+            res.send("0");
         }
-        res.write('삭제 성공!')
-        res.end();
     });
 });
 
+router.post('/delete', (req, res) => {
+    memberdao.remove(req.body, (err, result) => {
+        if (err) {
+            res.send("1");
+        } else {
+            res.send("0");
+        }
+    });
+});
+
+router.post('/deletePro', (req, res) => {
+    memberdao.removePro(req.body, (err, result) => {
+        if (err) {
+            res.send("1");
+        } else {
+            res.send("0");
+        }
+    });
+});
+
+router.get('/chkStu', (req, res) => {
+    memberdao.chkStu(req.query, (err, result) => {
+        if (result.length>0) {
+            res.send("1");
+        } else {
+            res.send("0");
+        }
+    });
+});
+
+router.get('/chkPro', (req, res) => {
+    memberdao.chkPro(req.query, (err, result) => {
+        if (result.length>0) {
+            res.send("1");
+        } else {
+            res.send("0");
+        }
+    });
+});
 
 module.exports = router;

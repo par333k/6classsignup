@@ -51,7 +51,8 @@
                     <input type="email" class="form-control" id="email">
                 </div>
                 <hr>
-                <button id="joinBtn" type="button" class="btn btn-primary" style="width: 100%">수정하기</button>
+                <button id="updateBtn" type="button" class="btn btn-primary" style="width: 100%">수정하기</button>
+                <button id="delBtn" type="button" class="btn btn-info logpad" style="width: 100%">회원탈퇴</button>
             </form>
         </div>
     </div>
@@ -59,9 +60,12 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script>
+        let userNum = 4;
+
         $.getJSON('http://192.168.0.30:8000/member/get', {
-            id: 1
+            id: userNum
         }).done(
             function (result) {
                 data = result[0];
@@ -74,6 +78,72 @@
                 $(year).val(data.sYear);
                 $(email).val(data.sEmail);
             });
+
+        $("#updateBtn").click(function () {
+
+            if (!$(no).val() || $(no).val() == "") {
+                swal("학번(교번)을 입력 해주세요!");
+                return;
+            }
+
+            if (!$(password).val() || $(password).val() == "") {
+                swal("비밀번호를 입력 해주세요!");
+                return;
+            }
+
+            if (!$('#name').val() || $('#name').val() == "") {
+                swal("이름을 입력 해주세요!");
+                return;
+            }
+
+            if ($(year).val() == 0) {
+                swal("학년을 입력 해주세요!");
+                return;
+            }
+            
+            $.ajax('http://192.168.0.30:8000/member/update', {
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    num: userNum,
+                    password: $(password).val(),
+                    name: $('#name').val(),
+                    tel: $(tel).val(),
+                    major: $(major).val(),
+                    email: $(email).val(),
+                    year: $(year).val(),
+                },
+                success: function (data) {
+                    if (data == "0") {
+                        swal("성공입니다!");
+                        //location.href = 'index.html';
+                    } else {
+                        swal("오류입니다!");
+                        console.log(data.error);
+                    }
+                }
+            });
+        });
+
+        $("#delBtn").click(function () {
+
+            $.ajax('http://192.168.0.30:8000/member/delete', {
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    num: userNum
+                },
+                success: function (data) {
+                    if (data == "0") {
+                        swal("성공입니다!");
+                        //location.href = 'index.html';
+                    } else {
+                        swal("오류발생", "알 수 없는 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
+                        console.log(data.error);
+                    }
+                }
+            });
+        });
     </script>
 </body>
 
