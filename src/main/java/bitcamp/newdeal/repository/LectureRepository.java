@@ -6,7 +6,7 @@ import bitcamp.newdeal.domain.Lecture;
 
 public interface LectureRepository {
 
-    List<Lecture> selectList();
+    List<Lecture> lectureList();
     
     Lecture selectOne(int lNum);
     

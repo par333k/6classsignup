@@ -25,7 +25,7 @@ public class ProfessorController {
             Professor loginProfessor = professorService.get(professorNo, professorPwd);
             
             if(loginProfessor == null)
-                throw new Exception("로그인 실패!");
+                throw new Exception("로그인실패!");
             
             session.setAttribute("loginProfessor", loginProfessor);
             result.put("status", "success");

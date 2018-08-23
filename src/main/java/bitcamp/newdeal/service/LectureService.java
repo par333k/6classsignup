@@ -15,4 +15,5 @@ public interface LectureService {
     int update(Lecture lecture);
     
     int delete(int lNum);
+
 }
