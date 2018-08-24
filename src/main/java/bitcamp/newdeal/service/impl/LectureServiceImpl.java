@@ -28,8 +28,8 @@ public class LectureServiceImpl implements LectureService {
 
     @Override
     public int add(Lecture lecture) {
-        // TODO Auto-generated method stub
-        return 0;
+        
+        return lectureRepository.insert(lecture);
     }
 
     @Override

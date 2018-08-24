@@ -24,6 +24,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student get(int studentNo, String studentPwd) {
+
        HashMap<String, Object> params = new HashMap<>();
        params.put("studentNo", studentNo);
        params.put("studentPwd", studentPwd);
