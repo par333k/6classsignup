@@ -17,5 +17,7 @@ public interface LectureRepository {
     List<Lecture> myLectureList(int pNum);
 
     int delete (int lectureNo);
+    
+    String lecturePname(int pNum);
 
 }
