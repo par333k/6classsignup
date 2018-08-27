@@ -13,8 +13,9 @@ public interface LectureRepository {
     int insert (Lecture lecture);
     
     int update (Lecture lecture);
-    
-    int delete (int lnum);
 
     List<Lecture> myLectureList(int pNum);
+
+    int delete (int lectureNo);
+
 }

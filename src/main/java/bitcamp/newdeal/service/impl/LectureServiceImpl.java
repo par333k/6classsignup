@@ -25,7 +25,6 @@ public class LectureServiceImpl implements LectureService {
         
         return lectureRepository.selectOne(lNum);
     }
-
     @Override
     public int add(Lecture lecture) {
         
@@ -34,14 +33,14 @@ public class LectureServiceImpl implements LectureService {
 
     @Override
     public int update(Lecture lecture) {
-        // TODO Auto-generated method stub
-        return 0;
+    	
+    	return lectureRepository.update(lecture);
     }
 
     @Override
-    public int delete(int lNum) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int delete(int lectureNo) {
+    	
+    	return lectureRepository.delete(lectureNo);
     }
 
     @Override
