@@ -25,11 +25,32 @@
 		select lNo, lName, lSubject, lRoom, lMember, lMaxMember, lStartDay, lEndDay
 		from P3_Lecture
 	</select>
+    
+    <select id="myLectureList"
+          parameterType="int"
+          resultMap="lectureMap">
+        SELECT * FROM P3_Lecture WHERE pNum=#{value}
+  
+    </select>
+    
+    <select id="selectOne"
+          parameterType="int"
+          resultMap="lectureMap">
+        SELECT * FROM P3_Lecture WHERE lNo=#{value}
+  
+    </select>
+    
+    <select id="lecturePname"
+            parameterType="int">
+    SELECT pName FROM P3_Professor JOIN P3_Lecture 
+    ON P3_Lecture.pNum = P3_Professor.pNum WHERE P3_Professor.pNum=#{value}
+    </select>
 
 	<insert id="insert" parameterType="Lecture">
 		insert into P3_Lecture(lName,lSubject,lContent,lFile,lMaxMember)
 		values(#{lectureName},#{lectureSubject},#{lectureContent},#{lectureFile},#{lectureMaxMember})
 	</insert>
+
 
 </mapper>
 

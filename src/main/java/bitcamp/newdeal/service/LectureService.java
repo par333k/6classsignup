@@ -16,4 +16,6 @@ public interface LectureService {
     
     int delete(int lNum);
 
+    List<Lecture> mylist(int pNum);
+
 }

@@ -22,8 +22,8 @@ public class LectureServiceImpl implements LectureService {
 
     @Override
     public Lecture get(int lNum) {
-        // TODO Auto-generated method stub
-        return null;
+        
+        return lectureRepository.selectOne(lNum);
     }
 
     @Override
@@ -42,6 +42,12 @@ public class LectureServiceImpl implements LectureService {
     public int delete(int lNum) {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    public List<Lecture> mylist(int pNum) {
+        
+        return lectureRepository.myLectureList(pNum);
     }
 
 }
