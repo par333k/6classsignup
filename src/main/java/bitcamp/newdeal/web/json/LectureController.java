@@ -87,6 +87,12 @@ public class LectureController {
         return result;
     }
     
+    @RequestMapping("get")
+    public Object get(int lNo) {
+        
+        return null;
+    }
+    
     @RequestMapping("delete")
     public Object delete(int lectureNo) {
         System.out.println("=============start delete controller..");
