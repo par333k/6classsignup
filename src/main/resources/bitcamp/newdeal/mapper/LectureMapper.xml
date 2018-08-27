@@ -30,6 +30,24 @@
 		insert into P3_Lecture(pNum, lName,lSubject,lContent,lFile,lMaxMember,lRoom,lAble,lStartDay,lEndDay,lTime)
 		values(#{pNum},#{lectureName},#{lectureSubject},#{lectureContent},#{lectureFile},#{lectureMaxMember},#{lectureRoom},'Y',#{lectureStartDay},#{lectureEndDay},#{lectureTime})
 	</insert>
+	
+	<update id="update" parameterType="Lecture">
+        update P3_Lecture set
+        lName=#{lectureName},
+        lSubject=#{lectureSubject},
+        lContent=#{lectureContent},
+        lFile=#{lectureFile},
+        lMaxMember=#{lectureMaxMember}
+        where 
+            lNo = #{lectureNo}
+        values(#{lectureName},#{lectureSubject},#{lectureContent},#{lectureFile},#{lectureMaxMember})
+    </update>
+	
+	<delete id="delete" parameterType="int">
+        delete from P3_Lecture
+       where 
+            lNo = #{lectureNo}
+    </delete>
 
 </mapper>
 
