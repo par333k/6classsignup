@@ -27,8 +27,8 @@
 	</select>
 
 	<insert id="insert" parameterType="Lecture">
-		insert into P3_Lecture(lName,lSubject,lContent,lFile,lMaxMember)
-		values(#{lectureName},#{lectureSubject},#{lectureContent},#{lectureFile},#{lectureMaxMember})
+		insert into P3_Lecture(pNum, lName,lSubject,lContent,lFile,lMaxMember,lRoom,lAble,lStartDay,lEndDay,lTime)
+		values(#{pNum},#{lectureName},#{lectureSubject},#{lectureContent},#{lectureFile},#{lectureMaxMember},#{lectureRoom},'Y',#{lectureStartDay},#{lectureEndDay},#{lectureTime})
 	</insert>
 
 </mapper>
