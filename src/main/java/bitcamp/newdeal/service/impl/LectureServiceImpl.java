@@ -22,10 +22,9 @@ public class LectureServiceImpl implements LectureService {
 
     @Override
     public Lecture get(int lNum) {
-
-    	return null;
+        
+        return lectureRepository.selectOne(lNum);
     }
-
     @Override
     public int add(Lecture lecture) {
         
@@ -42,6 +41,12 @@ public class LectureServiceImpl implements LectureService {
     public int delete(int lectureNo) {
     	
     	return lectureRepository.delete(lectureNo);
+    }
+
+    @Override
+    public List<Lecture> mylist(int pNum) {
+        
+        return lectureRepository.myLectureList(pNum);
     }
 
 }

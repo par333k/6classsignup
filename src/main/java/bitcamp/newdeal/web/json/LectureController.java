@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,6 +48,31 @@ public class LectureController {
         result.put("status", "success");
         result.put("list", list);
         return result;
+    }
+    
+    @GetMapping("myList")
+    public Object myList(HttpSession session) {
+        HashMap<String, Object> result = new HashMap<>();
+        
+        Professor loginProfessor = (Professor)session.getAttribute("loginProfessor");
+
+        List<Lecture> mylist = lectureService.mylist(loginProfessor.getpNum());
+
+        result.put("status", "success");
+        result.put("myList", mylist);
+        return result;
+        
+    }
+    
+    @RequestMapping(value="view")
+    public Object lectureView(int lNum){
+        HashMap<String, Object> result = new HashMap<>();
+        
+        Lecture lecture = lectureService.get(lNum);
+        
+        result.put("list", lecture);
+        return result;
+        
     }
     
     @RequestMapping("insert")
