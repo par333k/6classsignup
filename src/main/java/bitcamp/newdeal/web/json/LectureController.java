@@ -76,4 +76,25 @@ public class LectureController {
         result.put("status", "success");
         return result;
     }
+    
+    @RequestMapping("update")
+    public Object update(Lecture lecture) {
+        System.out.println("=============start update controller..");
+        
+        HashMap<String, Object> result = new HashMap<>();
+        lectureService.update(lecture);
+        result.put("status", "success");
+        return result;
+    }
+    
+    @RequestMapping("delete")
+    public Object delete(int lectureNo) {
+        System.out.println("=============start delete controller..");
+        
+        HashMap<String, Object> result = new HashMap<>();
+        lectureService.delete(lectureNo);
+        result.put("status", "success");
+        return result;
+    }
+   
 }

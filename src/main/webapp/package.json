@@ -1,7 +1,6 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,5 +19,6 @@
     "popper": "^1.0.1",
     "popper.js": "^1.14.4",
     "sweetalert": "^2.1.0"
-  }
+  },
+  "description": ""
 }

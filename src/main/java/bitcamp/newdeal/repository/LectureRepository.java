@@ -14,5 +14,5 @@ public interface LectureRepository {
     
     int update (Lecture lecture);
     
-    int delete (int lnum);
+    int delete (int lectureNo);
 }
