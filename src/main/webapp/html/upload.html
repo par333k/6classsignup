@@ -92,10 +92,11 @@
                     lectureFile: filename,
                     lectureRoom: $(room).val(),
                     lectureStartDay: $(startdate).val(),
+                    lectureEndDay: $(enddate).val(),
                     //lectureTime: $(time).val()
                 },
                 success: function (data) {
-                    if (data == "0") {
+                    if (!data.err) {
                         swal("성공입니다!");
                         //location.href = 'index.html';
                     } else {
