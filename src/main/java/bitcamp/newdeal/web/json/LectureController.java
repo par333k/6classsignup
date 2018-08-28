@@ -20,6 +20,7 @@ import bitcamp.newdeal.domain.Lecture;
 import bitcamp.newdeal.domain.Professor;
 import bitcamp.newdeal.domain.Student;
 import bitcamp.newdeal.service.LectureService;
+import bitcamp.newdeal.service.ProfessorService;
 
 @RestController
 @RequestMapping("/lecture")
@@ -27,6 +28,8 @@ public class LectureController {
 
     @Autowired
     LectureService lectureService;
+    @Autowired
+    ProfessorService professorService;
     
     @Autowired
     ServletContext sc;
@@ -34,6 +37,7 @@ public class LectureController {
     @GetMapping("list")
     public Object list(HttpSession session) {
         HashMap<String, Object> result = new HashMap<>();
+        
         if (session.getAttribute("loginStudent") != null) {
             Student loginStudent = (Student) session.getAttribute("loginStudent");
             result.put("loginStudent", loginStudent);
@@ -44,14 +48,14 @@ public class LectureController {
         }
 
         List<Lecture> list = lectureService.list();
+        System.out.println(list);
         
         result.put("status", "success");
         result.put("list", list);
         return result;
     }
     
-  /*  @RequestMapping("professorName")
-    public Object professorName();*/
+
     
     @GetMapping("myList")
     public Object myList(HttpSession session) {
@@ -68,12 +72,15 @@ public class LectureController {
     }
     
     @RequestMapping(value="view")
-    public Object lectureView(int lNum){
+    public Object lectureView(int lNum, int pNum){
         HashMap<String, Object> result = new HashMap<>();
         
         Lecture lecture = lectureService.get(lNum);
+        String pname = professorService.getPname(pNum);
         
         result.put("list", lecture);
+        result.put("pname", pname);
+        
         return result;
         
     }
