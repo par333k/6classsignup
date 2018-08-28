@@ -68,7 +68,7 @@
     <script src="../node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
     <script>
         let filename;
-        
+
         $('#syllabus').fileupload({
             dataType: 'json',
             done: function (e, data) {
@@ -79,12 +79,48 @@
         });
 
         $('#regClsBtn').click(function () {
+
+            if (!$(major).val() || $(major).val() == "") {
+                swal("개설학과를 입력하세요!");
+                return;
+            }
+
+            if (!$('#name').val() || $('#name').val() == "") {
+                swal("강좌명을 입력하세요!");
+                return;
+            }
+
+            if (!$(content).val() || $(content).val() == "") {
+                swal("강의 내용을 입력해 주세요!");
+                return;
+            }
+
+            if (!$(capacity).val() || $(capacity).val() == "") {
+                swal("수용인원을 입력해 주세요!");
+                return;
+            }
+
+            if (!$(room).val() || $(room).val() == "") {
+                swal("강의실을 입력해 주세요!");
+                return;
+            }
+
+            if (!$(startdate).val() || $(startdate).val() == "") {
+                swal("시작일을 입력해 주세요!");
+                return;
+            }
+
+            if (!$(enddate).val() || $(enddate).val() == "") {
+                swal("종료일을 입력해 주세요!");
+                return;
+            }
+
             alert("!!!");
             $.ajax('../json/lecture/add', {
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    pNum : 2,
+                    pNum: 2,
                     lectureSubject: $(major).val(),
                     lectureName: $('#name').val(),
                     lectureContent: $(content).val(),

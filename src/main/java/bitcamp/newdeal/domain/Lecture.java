@@ -1,10 +1,8 @@
 package bitcamp.newdeal.domain;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class Lecture implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -19,9 +17,7 @@ public class Lecture implements Serializable{
     protected int lectureMember;
     protected int lectureMaxMember;
     protected String lectureAble;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     protected Date lectureStartDay;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     protected Date lectureEndDay;
     protected Timestamp lectureTime;
     
