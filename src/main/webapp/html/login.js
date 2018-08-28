@@ -9,7 +9,7 @@ $('#loginBtn').click(() => {
 		        if (result.status == 'success') {
 		            location.href = 'Lecture/list.html'
 		        } else {
-		            alert('로그인 실패!')
+		            swal('학번과 비밀번호를 다시 확인해 주세요!')
 		        }
 		    }, 'json')
 		 .fail((error) => {
@@ -25,7 +25,7 @@ $('#loginBtn').click(() => {
 	        if (result.status == 'success') {
 	            location.href = 'Lecture/list.html'
 	        } else {
-	            alert('B')
+	            swal('교번과 비밀번호를 다시 확인해 주세요!')
 	        }
 	    }, 'json')
 	 .fail((error) => {
@@ -33,4 +33,9 @@ $('#loginBtn').click(() => {
 	        //alert('서버 요청 중 오류 발생!')
 	    });
 	}
+});
+
+
+$('#joinBtn').click(() => {
+    location.href = 'join.html';
 });

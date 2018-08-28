@@ -39,4 +39,20 @@ public class StudentController {
         return result;
     }
     
+    @PostMapping("slogout")
+    public Object slogout(int studentNo, String studentPwd, HttpSession session) {
+        
+        HashMap<String, Object> result = new HashMap<>();
+        
+        try {            
+            session.invalidate();
+            result.put("status", "success");
+            
+        }catch(Exception e) {
+            result.put("status", "fail");
+            result.put("message", e.getMessage());
+        }
+        
+        return result;
+    }
 }
