@@ -49,5 +49,10 @@ public class LectureServiceImpl implements LectureService {
         
         return lectureRepository.myLectureList(pNum);
     }
-
+    
+    @Override
+    public String getPname(int pNum) {
+        // TODO Auto-generated method stub
+        return lectureRepository.lecturePname(pNum);
+    }
 }

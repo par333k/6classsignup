@@ -17,5 +17,7 @@ public interface LectureService {
     int delete(int lectureNo);
 
     List<Lecture> mylist(int pNum);
+    
+    String getPname(int pNum);
 
 }

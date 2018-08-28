@@ -44,11 +44,14 @@ public class LectureController {
         }
 
         List<Lecture> list = lectureService.list();
-
+        
         result.put("status", "success");
         result.put("list", list);
         return result;
     }
+    
+  /*  @RequestMapping("professorName")
+    public Object professorName();*/
     
     @GetMapping("myList")
     public Object myList(HttpSession session) {
@@ -121,7 +124,7 @@ public class LectureController {
         HashMap<String, Object> result = new HashMap<>();
         lectureService.delete(lectureNo);
         result.put("status", "success");
-        return result;
+        return "redirect:myList";
     }
    
 }
