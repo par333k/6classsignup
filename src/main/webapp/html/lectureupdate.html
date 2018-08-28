@@ -68,7 +68,24 @@
     <script src="../node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
     <script>
         let filename;
-        
+
+        $.getJSON('../json/lecture/view', {
+            lNum : 2
+        }).done(
+            function (result) {
+                data = result.list;
+                console.log(result.list);
+
+                filename = data.lectureFile;
+                $(major).val(data.lectureSubject);
+                $('#name').val(data.lectureName);
+                $(content).val(data.lectureContent);
+                $(capacity).val(data.lectureMaxMember);
+                $(room).val(data.lectureRoom);
+                $(startdate).val(data.lectureStartDay);
+                $(enddate).val(data.lectureEndDay);
+            });
+
         $('#syllabus').fileupload({
             dataType: 'json',
             done: function (e, data) {
@@ -84,7 +101,8 @@
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    pNum : 2,
+                    lectureNo: 2,
+                    pNum: 2,
                     lectureSubject: $(major).val(),
                     lectureName: $('#name').val(),
                     lectureContent: $(content).val(),

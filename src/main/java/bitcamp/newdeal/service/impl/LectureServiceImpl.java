@@ -34,6 +34,7 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public int update(Lecture lecture) {
     	
+        System.out.println(lecture.getLectureRoom());
     	return lectureRepository.update(lecture);
     }
 

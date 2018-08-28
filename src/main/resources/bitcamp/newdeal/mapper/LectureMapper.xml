@@ -53,14 +53,17 @@
 	
 	<update id="update" parameterType="Lecture">
         update P3_Lecture set
-        lName=#{lectureName},
-        lSubject=#{lectureSubject},
-        lContent=#{lectureContent},
-        lFile=#{lectureFile},
-        lMaxMember=#{lectureMaxMember}
+        lName = #{lectureName},
+        lSubject = #{lectureSubject},
+        lContent = #{lectureContent},
+        lFile = #{lectureFile},
+        lMaxMember = #{lectureMaxMember},
+        lRoom = #{lectureRoom},
+        lStartDay = #{lectureStartDay},
+        lEndDay = #{lectureEndDay},
+        lTime = #{lectureTime}
         where 
             lNo = #{lectureNo}
-        values(#{lectureName},#{lectureSubject},#{lectureContent},#{lectureFile},#{lectureMaxMember})
     </update>
 	
 	<delete id="delete" parameterType="int">
