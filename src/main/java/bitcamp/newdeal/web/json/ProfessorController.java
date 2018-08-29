@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +36,19 @@ public class ProfessorController {
             result.put("message", e.getMessage());
         }
         
+        return result;
+    }
+    
+    @GetMapping("getsession")
+    public Object getSession(int dummy, HttpSession session) {
+        HashMap<String, Object> result = new HashMap<>();
+        if (session.getAttribute("loginProfessor") != null) {
+            result.put("user", "professor");
+            result.put("info", session.getAttribute("loginProfessor"));
+        } else if (session.getAttribute("loginStudent") != null) {
+            result.put("user", "student");
+            result.put("info", session.getAttribute("loginStudent"));
+        }
         return result;
     }
 }

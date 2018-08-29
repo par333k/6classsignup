@@ -14,11 +14,14 @@ $(function loadList(){
 		tbody.html('');
 		if(data.loginProfessor==null){
 			var sname = data.loginStudent.studentName;
-			$("#userName").html(`<p>${sname}님 반갑습니다</p>`);
+			$("#userName").html(`${sname}님 반갑습니다
+			<button type="button" class="btn btn-success btn-sm" 
+			onclick="location.href='../Student/myclass.html'">나의강의실</button>
+			`);
 		}else{
 			var pname = data.loginProfessor.professorName; 
 			
-			$("#userName").html(`<p>${pname}님 반갑습니다</p>
+			$("#userName").html(`${pname}님 반갑습니다
 			<button type="button" class="btn btn-success btn-sm" 
 			onclick="location.href='../Professor/mylecture.html'">나의강의실</button>
 			`);
