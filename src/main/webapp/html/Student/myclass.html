@@ -13,9 +13,9 @@
 <body>
     <div class="container">
         <div class="float-left">
-            {이름} 님의 강의실 입니다.
-            <button type="button" class="btn btn-success btn-sm">내 정보</button>
-            <button type="button" class="btn btn-success btn-sm">수강신청</button>
+            <span id="username"></span> 님의 강의실 입니다.
+            <button type="button" class="btn btn-success btn-sm" onclick="location.href='./studentinfo.html'">내 정보</button>
+            <button type="button" class="btn btn-success btn-sm" onclick="location.href='../Lecture/list.html'">수강신청</button>
         </div>
         <div class="float-right">
             <button type="button" class="btn btn-secondary btn-sm" id="logoutBtn">로그아웃</button>
@@ -86,7 +86,13 @@
     <script src="../../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../js/common.js"></script>
+    <script src="../js/loaduser.js"></script>
     <script src="../js/logout.js"></script>
+    <script>
+        setTimeout(function() {
+            $("#username").text(userName1);
+        }, 500);
+    </script>
 </body>
 
 </html>

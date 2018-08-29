@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>회원정보</title>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div class="join-container">
             <form class="col-md-6 logpad">
                 <div class="form-group">
-                    <label for="no">학번</label>
+                    <label for="no">교수번호</label>
                     <input type="number" class="form-control" id="no" value="1111" readonly>
                 </div>
                 <div class="form-group">
@@ -35,17 +35,6 @@
                     <label for="major">전공</label>
                     <input type="text" class="form-control" id="major">
                 </div>
-                <div class="form-group selectyear">
-                    <label for="year">학년</label>
-                    <select class="form-control" id="year">
-                        <option value="0" selected="selected">선택</option>
-                        <option value="1">1학년</option>
-                        <option value="2">2학년</option>
-                        <option value="3">3학년</option>
-                        <option value="4">4학년</option>
-                        <option value="5">5학년 이상</option>
-                    </select>
-                </div>
                 <div class="form-group">
                     <label for="email">이메일</label>
                     <input type="email" class="form-control" id="email">
@@ -57,28 +46,29 @@
         </div>
     </div>
 
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="js/logout.js"></script>
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/loaduser.js"></script>
+    <script src="../js/logout.js"></script>
     <script>
-        let userNum = 4;
-
-        $.getJSON('http://192.168.0.30:8000/member/get', {
-            id: userNum
-        }).done(
-            function (result) {
-                data = result[0];
-                console.log(data);
-
-                $(no).val(data.sNo);
-                $('#name').val(data.sName);
-                $(tel).val(data.sTel);
-                $(major).val(data.sMajor);
-                $(year).val(data.sYear);
-                $(email).val(data.sEmail);
-            });
+        setTimeout(function() {
+            $.getJSON('http://192.168.0.30:8000/member/getPro', {
+                id: userNum
+            }).done(
+                function (result) {
+                    data = result[0];
+                    console.log(data);
+    
+                    $(no).val(data.pNo);
+                    $('#name').val(data.pName);
+                    $(tel).val(data.pTel);
+                    $(major).val(data.pMajor);
+                    $(email).val(data.pEmail);
+                });
+        }, 500);
 
         $("#updateBtn").click(function () {
 
@@ -97,12 +87,7 @@
                 return;
             }
 
-            if ($(year).val() == 0) {
-                swal("학년을 입력 해주세요!");
-                return;
-            }
-            
-            $.ajax('http://192.168.0.30:8000/member/update', {
+            $.ajax('http://192.168.0.30:8000/member/updatePro', {
                 method: 'POST',
                 dataType: 'json',
                 data: {
@@ -112,7 +97,6 @@
                     tel: $(tel).val(),
                     major: $(major).val(),
                     email: $(email).val(),
-                    year: $(year).val(),
                 },
                 success: function (data) {
                     if (data == "0") {
@@ -128,7 +112,7 @@
 
         $("#delBtn").click(function () {
 
-            $.ajax('http://192.168.0.30:8000/member/delete', {
+            $.ajax('http://192.168.0.30:8000/member/deletePro', {
                 method: 'POST',
                 dataType: 'json',
                 data: {
