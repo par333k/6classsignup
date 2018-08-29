@@ -17,6 +17,8 @@ public interface LectureRepository {
     List<Lecture> myLectureList(int pNum);
 
     int delete (int lectureNo);
+
+    List<Lecture> lectureListSearch(String keyword);
     
     
 

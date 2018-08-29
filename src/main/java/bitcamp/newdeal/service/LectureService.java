@@ -17,7 +17,8 @@ public interface LectureService {
     int delete(int lectureNo);
 
     List<Lecture> mylist(int pNum);
-    
+
+    List<Lecture> listSearch(String keyword); 
    
 
 }

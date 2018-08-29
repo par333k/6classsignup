@@ -24,6 +24,11 @@
 		resultMap="lectureMap">
 		select * from P3_Lecture
 	</select>
+	
+	<select id="lectureListSearch" parameterType="string"
+        resultMap="lectureMap">
+        select * from P3_Lecture Where lName like CONCAT('%',#{keyword},'%')
+    </select>
     
     <select id="myLectureList"
           parameterType="int"

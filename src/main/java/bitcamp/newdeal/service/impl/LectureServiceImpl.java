@@ -49,6 +49,11 @@ public class LectureServiceImpl implements LectureService {
         
         return lectureRepository.myLectureList(pNum);
     }
+
+    @Override
+    public List<Lecture> listSearch(String keyword) {
+        return lectureRepository.lectureListSearch(keyword);
+    }
     
 
 }
