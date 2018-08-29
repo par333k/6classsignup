@@ -18,6 +18,6 @@ public interface LectureRepository {
 
     int delete (int lectureNo);
     
-    String lecturePname(int pNum);
+    
 
 }

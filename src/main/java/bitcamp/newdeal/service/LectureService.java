@@ -18,6 +18,6 @@ public interface LectureService {
 
     List<Lecture> mylist(int pNum);
     
-    String getPname(int pNum);
+   
 
 }

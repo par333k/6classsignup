@@ -16,4 +16,5 @@ public interface ProfessorService {
     
     int update(Professor professor);
 
+    String getPname(int pNum);
 }

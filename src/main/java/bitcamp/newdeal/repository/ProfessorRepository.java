@@ -16,4 +16,6 @@ public interface ProfessorRepository {
     
     int update (Professor professor);
     
+    String lecturePname(int pNum);
+    
 }

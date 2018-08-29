@@ -26,13 +26,13 @@ $(function loadList(){
 			onclick="location.href='../Professor/mylecture.html'">나의강의실</button>
 			`);
 		};
-
+		console.log(data.list);
 		for(var item of data.list){
+			console.log(item);
 			$("<tr>").html(` <th scope="row">${item.lectureNo}</th>
                         <td>${item.lectureSubject}</td>
-                        <td><a href="lectureinfo.html" data-no="${item.lectureNo}" class="viewLink">${item.lectureName}</a></td>
+                        <td><a href="lectureinfo.html" data-no="${item.lectureNo}" data-no2="${item.pNum}" class="viewLink">${item.lectureName}</a></td>
                         <td>${item.lectureRoom}</td>
-                        <td>Gregory Mankiw</td>
                         <td>${item.lectureStartDay}</td>
                         <td>${item.lectureEndDay}</td>
                         <td>${item.lectureMember}/${item.lectureMaxMember}</td>
@@ -45,5 +45,6 @@ $(function loadList(){
 tbody.on('click', 'a.viewLink', function(event) {
     event.preventDefault();
     var lNum = $(event.target).attr('data-no');
-    location.href = `lectureinfo.html?lNum=${lNum}`;
+    var pNum = $(event.target).attr('data-no2');
+    location.href = `lectureinfo.html?lNum=${lNum}&pNum=${pNum}`;
 });
