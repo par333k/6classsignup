@@ -115,7 +115,6 @@
                 return;
             }
 
-            alert("!!!");
             $.ajax('../json/lecture/add', {
                 method: 'POST',
                 dataType: 'json',
@@ -134,7 +133,7 @@
                 success: function (data) {
                     if (!data.err) {
                         swal("성공입니다!");
-                        //location.href = 'index.html';
+                        location.href = 'Lecture/list.html';
                     } else {
                         swal("오류발생",
                             "알 수 없는 원인에 의해 오류가 발생 했습니다. 잠시 후 다시 시도해주세요. 오류가 지속된다면 고객지원센터로 문의 바랍니다."
