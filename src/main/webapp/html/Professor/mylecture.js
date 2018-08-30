@@ -17,7 +17,6 @@ $(function loadList(){
                         <td>${item.lectureSubject}</td>
                         <td>${item.lectureName}</td>
                         <td>${item.lectureRoom}</td>
-                        <td>aaa</td>
                         <td>${item.lectureStartDay}</td>
                         <td>${item.lectureEndDay}</td>
                         <td>${item.lectureMember}/${item.lectureMaxMember}</td>
