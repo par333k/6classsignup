@@ -67,7 +67,15 @@ $("#searchBtn").click(function () {
                         <td>${item.lectureStartDay}</td>
                         <td>${item.lectureEndDay}</td>
                         <td>${item.lectureMember}/${item.lectureMaxMember}</td>
-                        <td><button type="button">신청</button>`).appendTo(tbody);
+                        <td><button type="button" id="apply">신청</button>`).appendTo(tbody);	
 		}
+		tbody.on('click', '#apply', function(event) {
+		    event.preventDefault();
+		    $.getJSON(`${serverApiAddr}/json/lecture/apply?lectureNo=${item.lectureNo}`,
+		    		function(result){
+		    	if(result.status == 'success'){
+		    		alert('신청성공')
+		    		location.href = `list.html`;
+		    	}
 	});
 });

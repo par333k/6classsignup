@@ -14,4 +14,6 @@ public interface StudentService {
         int add(Student student);
         
         int update(Student student);
+        
+        int apply(int lectureNo);
 }

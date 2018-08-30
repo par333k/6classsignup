@@ -66,6 +66,9 @@
     <script src="../node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
     <script src="../node_modules/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
     <script src="../node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/loaduser.js"></script>
+    
     <script>
         let filename;
 
@@ -119,7 +122,7 @@
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    pNum: 2,
+                    pNum: userNum,
                     lectureSubject: $(major).val(),
                     lectureName: $('#name').val(),
                     lectureContent: $(content).val(),

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bitcamp.newdeal.repository.StudentListRepository">
+
+	<resultMap type="studentList" id="studentListMap">
+		<id column="lNo" property="lectureNo" />
+		<result column="sNum" property="sNum" />
+		<result column="aDay" property="applyDay" />
+		<result column="aConfirm" property="applyConfirm" />
+	</resultMap>
+
+	<insert id="applyadd" parameterType="int">
+	insert into P3_StudentList(lNo, sNum, aDay, aConfirm)
+	values(#{lectureNo}, #{sNum}, #{applyDay}, #{applyConfirm})
+	</insert>
+	
+
+    <select id="applyList">
+    </select>
+</mapper>
+
+
+
+

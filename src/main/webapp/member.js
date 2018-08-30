@@ -7,7 +7,7 @@ const memberdao = require('./memberdao')
 
 var pool = mysql.createPool({
     connectionLimit: 10,
-    host: '13.125.145.195', 
+    host: '18.223.113.138', 
     port: '3306',
     database: 'studydb',
     user: 'study',

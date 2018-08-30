@@ -55,4 +55,9 @@ public class StudentController {
         
         return result;
     }
+    @RequestMapping("apply")
+    public Object apply(int lectureNo) {
+        HashMap<String, Object> result = new HashMap<>();
+        
+    }
 }

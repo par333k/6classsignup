@@ -116,7 +116,8 @@ public class LectureController {
     @RequestMapping("add")
     public Object insert(Lecture lecture) {
         System.out.println("=============start add controller..");
-
+        
+        
         HashMap<String, Object> result = new HashMap<>();
         lectureService.add(lecture);
         result.put("status", "success");
