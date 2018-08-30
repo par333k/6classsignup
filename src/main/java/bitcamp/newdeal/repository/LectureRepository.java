@@ -6,7 +6,7 @@ import bitcamp.newdeal.domain.Lecture;
 
 public interface LectureRepository {
 
-    List<Lecture> lectureList();
+    List<Lecture> lectureList(int start);
     
     Lecture selectOne(int lNum);
     
@@ -19,6 +19,8 @@ public interface LectureRepository {
     int delete (int lectureNo);
 
     List<Lecture> lectureListSearch(String keyword);
+
+    int getTotalPage();
     
     
 

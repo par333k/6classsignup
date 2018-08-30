@@ -32,9 +32,14 @@ public class LectureController {
 
     @Autowired
     ServletContext sc;
+    
+    @GetMapping("totalpage")
+    public Object totalPage() {
+        return lectureService.getTotalPage();
+    }
 
     @GetMapping("list")
-    public Object list(HttpSession session) {
+    public Object list(int page, HttpSession session) {
         HashMap<String, Object> result = new HashMap<>();
 
         if (session.getAttribute("loginStudent") != null) {
@@ -45,8 +50,10 @@ public class LectureController {
             Professor loginProfessor = (Professor) session.getAttribute("loginProfessor");
             result.put("loginProfessor", loginProfessor);
         }
+        
+        int start = (page-1) * 10;
 
-        List<Lecture> list = lectureService.list();
+        List<Lecture> list = lectureService.list(start);
         System.out.println(list);
 
         result.put("status", "success");

@@ -2,11 +2,17 @@
 
 let tbody = $('#eListTable > tbody');
 let data = null;
+let page = 1;
+let totalpage = 10;
 
+$.getJSON(`${serverApiAddr}/json/lecture/totalpage`, {}).done(function (result) {
+	console.log(result);
+	totalpage = result;
+});
 
-$(function loadList() {
+function loadList() {
 	console.log('로드됨!');
-	$.getJSON(`${serverApiAddr}/json/lecture/list`, {}).done(function (result) {
+	$.getJSON(`${serverApiAddr}/json/lecture/list`, {'page' : page}).done(function (result) {
 		console.log(result.status);
 		console.log(result.list);
 		data = result;
@@ -38,8 +44,21 @@ $(function loadList() {
                         <td><button type="button">신청</button>`).appendTo(tbody);
 		}
 	});
+}
+
+loadList();
+
+$('#nextPage').click(function() {
+	if (page >= totalpage) return;
+	page++;
+	loadList();
 });
 
+$('#prevPage').click(function() {
+	if (page <= 1) return;
+	page--;
+	loadList();
+});
 
 tbody.on('click', 'a.viewLink', function (event) {
 	event.preventDefault();
