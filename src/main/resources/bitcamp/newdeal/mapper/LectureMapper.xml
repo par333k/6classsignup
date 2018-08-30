@@ -20,10 +20,14 @@
 		<result column="lTime" property="lectureTime" />
 	</resultMap>
 
-	<select id="lectureList" parameterType="Lecture"
+	<select id="lectureList" parameterType="int"
 		resultMap="lectureMap">
-		select * from P3_Lecture
+		select * from P3_Lecture limit #{start}, 10
 	</select>
+	
+	<select id="getTotalPage" resultType="int">
+        select count(*) from P3_Lecture
+    </select>
 	
 	<select id="lectureListSearch" parameterType="string"
         resultMap="lectureMap">

@@ -15,9 +15,9 @@ public class LectureServiceImpl implements LectureService {
     @Autowired LectureRepository lectureRepository;
     
     @Override
-    public List<Lecture> list() {
+    public List<Lecture> list(int start) {
         
-        return lectureRepository.lectureList();
+        return lectureRepository.lectureList(start);
     }
 
     @Override
@@ -53,6 +53,11 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public List<Lecture> listSearch(String keyword) {
         return lectureRepository.lectureListSearch(keyword);
+    }
+
+    @Override
+    public int getTotalPage() {
+        return lectureRepository.getTotalPage()/10 + 1;
     }
     
 
