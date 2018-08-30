@@ -79,7 +79,6 @@ public class LectureController {
         result.put("pname", pname);
 
         return result;
-
     }
 
     @GetMapping("listsearch")
