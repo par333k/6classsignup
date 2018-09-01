@@ -21,6 +21,8 @@ public interface LectureRepository {
     List<Lecture> lectureListSearch(String keyword);
 
     int getTotalPage();
+
+    int applyUpdate(int lectureNo);
     
     
 

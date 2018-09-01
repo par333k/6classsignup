@@ -59,6 +59,13 @@ public class LectureServiceImpl implements LectureService {
     public int getTotalPage() {
         return lectureRepository.getTotalPage()/10 + 1;
     }
-    
+
+    @Override
+    public int applyUpdate(int lectureNo) {
+        
+        return lectureRepository.applyUpdate(lectureNo);
+    }
+
+
 
 }

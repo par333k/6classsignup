@@ -89,8 +89,17 @@ public class LectureController {
     }
 
     @GetMapping("listsearch")
-    public Object listSearch(String keyword) {
+    public Object listSearch(String keyword, HttpSession session) {
         HashMap<String, Object> result = new HashMap<>();
+        
+        if (session.getAttribute("loginStudent") != null) {
+            Student loginStudent = (Student) session.getAttribute("loginStudent");
+            result.put("loginStudent", loginStudent);
+        } else if (session.getAttribute("loginProfessor") != null) {
+            System.out.println("있음");
+            Professor loginProfessor = (Professor) session.getAttribute("loginProfessor");
+            result.put("loginProfessor", loginProfessor);
+        }
 
         List<Lecture> list = lectureService.listSearch(keyword);
 

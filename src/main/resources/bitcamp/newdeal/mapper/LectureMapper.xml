@@ -50,8 +50,8 @@
     
 
 	<insert id="insert" parameterType="Lecture">
-		insert into P3_Lecture(pNum, lName,lSubject,lContent,lFile,lMaxMember,lRoom,lAble,lStartDay,lEndDay,lTime)
-		values(#{pNum},#{lectureName},#{lectureSubject},#{lectureContent},#{lectureFile},#{lectureMaxMember},#{lectureRoom},'Y',#{lectureStartDay},#{lectureEndDay},#{lectureTime})
+		insert into P3_Lecture(pNum, lName,lSubject,lContent,lFile,lMember,lMaxMember,lRoom,lAble,lStartDay,lEndDay,lTime)
+		values(#{pNum},#{lectureName},#{lectureSubject},#{lectureContent},#{lectureFile},0,#{lectureMaxMember},#{lectureRoom},'Y',#{lectureStartDay},#{lectureEndDay},#{lectureTime})
 	</insert>
 	
 	<update id="update" parameterType="Lecture">
@@ -74,8 +74,12 @@
        where 
             lNo = #{lectureNo}
     </delete>
-
-
+   
+    <update id="applyUpdate" parameterType="int">
+    
+    update P3_Lecture set lMember = lMember+1 where lNo = #{lectureNo}
+    
+   </update>
 </mapper>
 
 

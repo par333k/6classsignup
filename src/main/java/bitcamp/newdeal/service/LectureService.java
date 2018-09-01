@@ -22,4 +22,6 @@ public interface LectureService {
 
     int getTotalPage();
 
+    int applyUpdate(int lectureNo);
+
 }

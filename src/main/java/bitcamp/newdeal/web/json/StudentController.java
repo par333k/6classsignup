@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import bitcamp.newdeal.domain.Student;
+import bitcamp.newdeal.service.LectureService;
 import bitcamp.newdeal.service.StudentService;
 
 @RestController
@@ -17,6 +18,7 @@ import bitcamp.newdeal.service.StudentService;
 public class StudentController {
 
     @Autowired StudentService studentService;
+    @Autowired LectureService lectureService;
     
     @PostMapping("slogin")
     public Object slogin(int studentNo, String studentPwd, HttpSession session) {
@@ -55,9 +57,6 @@ public class StudentController {
         
         return result;
     }
-    @RequestMapping("apply")
-    public Object apply(int lectureNo) {
-        HashMap<String, Object> result = new HashMap<>();
-        
-    }
+    
+    
 }

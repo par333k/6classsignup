@@ -11,14 +11,18 @@
 		<result column="aConfirm" property="applyConfirm" />
 	</resultMap>
 
-	<insert id="applyadd" parameterType="int">
+	<insert id="applyAdd" parameterType="StudentList">
 	insert into P3_StudentList(lNo, sNum, aDay, aConfirm)
 	values(#{lectureNo}, #{sNum}, #{applyDay}, #{applyConfirm})
 	</insert>
 	
 
-    <select id="applyList">
+    <select id="applyList" parameterType="int" resultMap="studentListMap">
+    select * from P3_StudentList where sNum = #{value}
+    
     </select>
+    
+    
 </mapper>
 
 

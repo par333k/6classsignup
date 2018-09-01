@@ -25,59 +25,24 @@
             <h2>나의 강의실</h2>
         </div>
         <div class="list-container logpad">
-            <table class="table table-hover">
+            <table class="table table-hover" id="eListTable">
                 <thead>
                     <tr class="table-active">
-                        <th scope="col">#</th>
                         <th scope="col">과목번호</th>
                         <th scope="col">개설학과</th>
                         <th scope="col">강의제목</th>
-                        <th scope="col">강의시간</th>
-                        <th scope="col">담당교수</th>
-                        <th scope="col">학점</th>
-                        <th scope="col">재수강</th>
-                        <th scope="col">삭제</th>
+                        <th scope="col">강의실</th>
+                        <th scope="col">개강일</th>
+                        <th scope="col">종강일</th>
+                        <th scope="col">신청현황</th>
+                        <th scope="col">철회하기</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>0012B</td>
-                        <td>경제학과</td>
-                        <td>경제학원론</td>
-                        <td>수2,3(B503)</td>
-                        <td>Gregory Mankiw</td>
-                        <td>3</td>
-                        <td>재수강</td>
-                        <td><button type="button" class="btn btn-secondary btn-sm">삭제</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>0013B</td>
-                        <td>경제학과</td>
-                        <td>경제사</td>
-                        <td>월1,2(C102)</td>
-                        <td>Adam Smith</td>
-                        <td>3</td>
-                        <td></td>
-                        <td><button type="button" class="btn btn-secondary btn-sm">삭제</button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
-                        <td><button type="button" class="btn btn-secondary btn-sm">삭제</button></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
         <div class="pagetitle">
-            <button type="button" class="btn btn-primary">저장하기</button>
             <button type="button" class="btn btn-secondary" onclick="location.href='../Lecture/list.html'">나가기</button>
         </div>
     </div>
@@ -87,6 +52,7 @@
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/loaduser.js"></script>
+    <script src="myclass.js"></script>
     <script src="../js/logout.js"></script>
     <script>
         setTimeout(function() {
