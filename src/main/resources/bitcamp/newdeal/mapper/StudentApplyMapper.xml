@@ -24,7 +24,7 @@
     <select id="myApplyList" parameterType="int" resultMap="studentApplyMap">
     
     SELECT * FROM `P3_Lecture` 
-    WHERE lNo = (SELECT lNo FROM P3_StudentList WHERE sNum=#{value})
+    WHERE lNo IN (SELECT lNo FROM P3_StudentList WHERE sNum=#{value})
     
     </select>
 

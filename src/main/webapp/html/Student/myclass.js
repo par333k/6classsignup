@@ -7,10 +7,10 @@ let data = null;
 $(function loadList(){
 	console.log('로드됨!');
 	$.getJSON(`${serverApiAddr}/json/apply/myApplyList`,{	
-	}).done(function(result){
-		console.log(result.status);
-		console.log(result.myApplyList);
-		data = result;
+	}).done(function(resultApplyList){
+		console.log(resultApplyList.status);
+		console.log(resultApplyList.myApplyList);
+		data = resultApplyList;
 		tbody.html('');
 		for(var item of data.myApplyList){
 			$("<tr>").html(`<th scope="row">${item.lectureNo}</th>
@@ -22,16 +22,17 @@ $(function loadList(){
                         <td>${item.lectureMember}/${item.lectureMaxMember}</td>
                         <td><button type="button" id="cancel">철회하기</button>`).appendTo(tbody);
 		}
-		/*tbody.on('click', '#cancel', function(event) {
+		tbody.on('click', '#cancel', function(event) {
 		    event.preventDefault();
-		    $.getJSON(`${serverApiAddr}/json/lecture/delete?lectureNo=${item.lectureNo}`,
+		    $.getJSON(`${serverApiAddr}/json/studentlist/applyDelete?lectureNo=${item.lectureNo}`,
 		    		function(result){
-		    	if(result.status == 'success'){
-		    		alert('삭제성공!')
-		    		location.href = `mylecture.html`;
+		    	if(result.status =="success"){
+		    		swal('강의신청을 철회하였습니다!')
 		    	}
-		    });  */
+		    	/*location.href = `myclass.html`;*/
+		    });
 		});
 	});
+});
 
 

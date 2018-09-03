@@ -80,6 +80,12 @@
     update P3_Lecture set lMember = lMember+1 where lNo = #{lectureNo}
     
    </update>
+   
+   <update id="applyUndo" parameterType="int">
+   update P3_Lecture set lMember = lMember-1 where lNo = #{lectureNo}
+   </update>
+   
+   
 </mapper>
 
 

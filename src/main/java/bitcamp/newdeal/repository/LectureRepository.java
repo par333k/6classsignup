@@ -23,6 +23,8 @@ public interface LectureRepository {
     int getTotalPage();
 
     int applyUpdate(int lectureNo);
+
+    int applyUndo(int lectureNo);
     
     
 

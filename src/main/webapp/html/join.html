@@ -71,15 +71,15 @@
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        let userSlt = "http://192.168.0.30:8000/member/add0";
-        let chkUrl = "http://192.168.0.30:8000/member/chkStu";
+        let userSlt = "http://192.168.0.69:8000/member/add0";
+        let chkUrl = "http://192.168.0.69:8000/member/chkStu";
         let chkFlg = 1;
 
         $("#user").change(function () {
             if ($("#user").val() == "교수") {
                 $(".selectyear").hide();
-                userSlt = "http://192.168.0.30:8000/member/add1";
-                chkUrl = "http://192.168.0.30:8000/member/chkPro";
+                userSlt = "http://192.168.0.69:8000/member/add1";
+                chkUrl = "http://192.168.0.69:8000/member/chkPro";
             } else {
                 $(".selectyear").show();
             }

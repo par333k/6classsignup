@@ -17,4 +17,10 @@ public class StudentListServiceImpl implements StudentListService {
         return studentListRepository.applyAdd(studentList);
     }
 
+    @Override
+    public int applyDelete(int lectureNo) {
+        
+        return studentListRepository.applyDelete(lectureNo);
+    }
+
 }

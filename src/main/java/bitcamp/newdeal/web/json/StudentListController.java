@@ -39,4 +39,14 @@ public class StudentListController {
         result.put("status", "success");
         return result;
     }
+    
+    @RequestMapping("applyDelete")
+    public Object applyDelete(int lectureNo) {
+       HashMap<String, Object> result = new HashMap<>();
+       lectureService.applyUndo(lectureNo);
+       studentListService.applyDelete(lectureNo);
+       result.put("status", "success");
+       return result;
+       
+    }
 }

@@ -22,7 +22,10 @@
     
     </select>
     
-    
+    <delete id="applyDelete" parameterType="int">
+    delete from P3_StudentList where lNo = #{lectureNo}
+    </delete>
+   
 </mapper>
 
 

@@ -22,13 +22,18 @@ public class StudentApplyController {
      
      @RequestMapping("myApplyList")
      public Object myApplyList(HttpSession session) {
-         HashMap<String, Object> result = new HashMap<>();
+         HashMap<String, Object> resultApplyList = new HashMap<>();
          
          Student loginStudent = (Student) session.getAttribute("loginStudent");
          List<StudentApply> myApplyList = studentApplyService.myApplyList(loginStudent.getsNum());
+         if(myApplyList.size()==0) {
+             resultApplyList.put("status", "newApply");
+             resultApplyList.put("myApplyList", myApplyList);
+         }else {
          
-         result.put("status", "success");
-         result.put("myApplyList", myApplyList);
-         return result;
+         resultApplyList.put("status", "success");
+         resultApplyList.put("myApplyList", myApplyList);
+         }
+         return resultApplyList;
      }
 }

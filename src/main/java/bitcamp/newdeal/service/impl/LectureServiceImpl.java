@@ -66,6 +66,12 @@ public class LectureServiceImpl implements LectureService {
         return lectureRepository.applyUpdate(lectureNo);
     }
 
+    @Override
+    public int applyUndo(int lectureNo) {
+        // TODO Auto-generated method stub
+        return lectureRepository.applyUndo(lectureNo);
+    }
+
 
 
 }

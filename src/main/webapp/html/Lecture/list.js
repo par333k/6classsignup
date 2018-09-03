@@ -4,6 +4,7 @@ let tbody = $('#eListTable > tbody');
 let data = null;
 let page = 1;
 let totalpage = 10;
+let apply = null;
 
 $.getJSON(`${serverApiAddr}/json/lecture/totalpage`, {}).done(function (result) {
 	console.log(result);
@@ -50,6 +51,16 @@ function loadList() {
 		} else {
 			for (var item of data.list) {
 				console.log(item);
+				if(`${item.lectureMember}`==`${item.lectureMaxMember}`){
+					$("<tr>").html(` <th scope="row" id="lno">${item.lectureNo}</th>
+							<td>${item.lectureSubject}</td>
+							<td><a href="lectureinfo.html" data-no="${item.lectureNo}" data-no2="${item.pNum}" class="viewLink">${item.lectureName}</a></td>
+							<td>${item.lectureRoom}</td>
+							<td>${item.lectureStartDay}</td>
+							<td>${item.lectureEndDay}</td>
+							<td>${item.lectureMember}/${item.lectureMaxMember}</td>
+							<td>정원초과</td>`).appendTo(tbody);
+					}else{
 				$("<tr>").html(` <th scope="row" id="lno">${item.lectureNo}</th>
 							<td>${item.lectureSubject}</td>
 							<td><a href="lectureinfo.html" data-no="${item.lectureNo}" data-no2="${item.pNum}" class="viewLink">${item.lectureName}</a></td>
@@ -58,6 +69,7 @@ function loadList() {
 							<td>${item.lectureEndDay}</td>
 							<td>${item.lectureMember}/${item.lectureMaxMember}</td>
 							<td><button type="button" id="apply" data-no3="${item.lectureNo}">신청</button></td>`).appendTo(tbody);
+					}
 			}
 			tbody.on('click', '#apply', function(event) {
 			    event.preventDefault();
@@ -69,32 +81,73 @@ function loadList() {
 			      var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();   
 			      var chan_val = year + '-' + mon + '-' + day;
 			      $(this).val(chan_val);
-			    $.ajax('../../json/studentlist/applyAdd', {
-	                method: 'POST',
-	                dataType: 'json',
-	                data: {
-	                    sNum: sNum,
-	                    lectureNo: lNum,
-	                    applyDay: chan_val,
-	                    applyConfirm: 1
-	                },
-	                success: function (data) {
-	                    if (!data.err) {
-	                        swal("성공입니다!");
-	                        $.getJSON(`${serverApiAddr}/json/studentlist/applyUpdate?lectureNo=${item.lectureNo}`,
-	            		    		function(result){
-	            		    	if(result.status == 'success'){
-	            		    		location.href = '../Student/myclass.html';
-	            		    	}
-	            		    });
-	                    } else {
-	                        swal("오류발생",
-	                            "알 수 없는 원인에 의해 오류가 발생 했습니다. 잠시 후 다시 시도해주세요. 오류가 지속된다면 고객지원센터로 문의 바랍니다."
-	                        );
-	                        console.log(data.error);
-	                    }
-	                }
-	            });
+			    $.getJSON(`${serverApiAddr}/json/apply/myApplyList`,{	
+			  	}).done(function(resultApplyList){
+			  		if(resultApplyList.status == "newApply"){
+			  			$.ajax('../../json/studentlist/applyAdd', {
+		 	                method: 'POST',
+		 	                dataType: 'json',
+		 	                data: {
+		 	                    sNum: sNum,
+		 	                    lectureNo: lNum,
+		 	                    applyDay: chan_val,
+		 	                    applyConfirm: 1
+		 	                },
+		 	                success: function (data) {
+		 	                    if (!data.err) {
+		 	                        swal("성공입니다!");
+		 	                        $.getJSON(`${serverApiAddr}/json/studentlist/applyUpdate?lectureNo=${lNum}`,
+		 	            		    		function(result){
+		 	            		    	if(result.status == 'success'){
+		 	            		    		location.href = '../Student/myclass.html';
+		 	            		    	}
+		 	            		    });
+		 	                    } else {
+		 	                        swal("오류발생",
+		 	                            "알 수 없는 원인에 의해 오류가 발생 했습니다. 잠시 후 다시 시도해주세요. 오류가 지속된다면 고객지원센터로 문의 바랍니다."
+		 	                        );
+		 	                        console.log(data.error);
+		 	                    }
+		 	                }
+		 	            });//ajax add
+			  		}
+			  		apply = resultApplyList;
+			  		console.log(apply);
+			  		for(var itemNo of apply.myApplyList){
+			  			console.log(itemNo);
+			  			if(`${itemNo.lectureNo}` == lNum){
+			  				swal("이미 신청한 강의입니다!")
+			  				break;
+			  			}else{
+			  				 $.ajax('../../json/studentlist/applyAdd', {
+			 	                method: 'POST',
+			 	                dataType: 'json',
+			 	                data: {
+			 	                    sNum: sNum,
+			 	                    lectureNo: lNum,
+			 	                    applyDay: chan_val,
+			 	                    applyConfirm: 1
+			 	                },
+			 	                success: function (data) {
+			 	                    if (!data.err) {
+			 	                        swal("성공입니다!");
+			 	                        $.getJSON(`${serverApiAddr}/json/studentlist/applyUpdate?lectureNo=${lNum}`,
+			 	            		    		function(result){
+			 	            		    	if(result.status == 'success'){
+			 	            		    		location.href = '../Student/myclass.html';
+			 	            		    	}
+			 	            		    });
+			 	                    } else {
+			 	                        swal("오류발생",
+			 	                            "알 수 없는 원인에 의해 오류가 발생 했습니다. 잠시 후 다시 시도해주세요. 오류가 지속된다면 고객지원센터로 문의 바랍니다."
+			 	                        );
+			 	                        console.log(data.error);
+			 	                    }
+			 	                }
+			 	            });//ajax add
+			  			}//if
+			  		}//for
+			  	});//function(result) 
 			});
 		}
 		
@@ -149,6 +202,16 @@ $("#searchBtn").click(function () {
 		} else {
 			for (var item of data.list) {
 				console.log(item);
+				if(`${item.lectureMember}`==`${item.lectureMaxMember}`){
+					$("<tr>").html(` <th scope="row" id="lno">${item.lectureNo}</th>
+							<td>${item.lectureSubject}</td>
+							<td><a href="lectureinfo.html" data-no="${item.lectureNo}" data-no2="${item.pNum}" class="viewLink">${item.lectureName}</a></td>
+							<td>${item.lectureRoom}</td>
+							<td>${item.lectureStartDay}</td>
+							<td>${item.lectureEndDay}</td>
+							<td>${item.lectureMember}/${item.lectureMaxMember}</td>
+							<td>정원초과</td>`).appendTo(tbody);
+					}else{
 				$("<tr>").html(` <th scope="row" id="lno">${item.lectureNo}</th>
 							<td>${item.lectureSubject}</td>
 							<td><a href="lectureinfo.html" data-no="${item.lectureNo}" data-no2="${item.pNum}" class="viewLink">${item.lectureName}</a></td>
@@ -157,6 +220,7 @@ $("#searchBtn").click(function () {
 							<td>${item.lectureEndDay}</td>
 							<td>${item.lectureMember}/${item.lectureMaxMember}</td>
 							<td><button type="button" id="apply" data-no3="${item.lectureNo}">신청</button></td>`).appendTo(tbody);
+					}
 			}
 			tbody.on('click', '#apply', function(event) {
 			    event.preventDefault();
@@ -167,32 +231,45 @@ $("#searchBtn").click(function () {
 			      var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();   
 			      var chan_val = year + '-' + mon + '-' + day;
 			      $(this).val(chan_val);
-			    $.ajax('../../json/studentlist/applyAdd', {
-	                method: 'POST',
-	                dataType: 'json',
-	                data: {
-	                    sNum: sNum,
-	                    lectureNo: lNum,
-	                    applyDay: chan_val,
-	                    applyConfirm: 1
-	                },
-	                success: function (data) {
-	                    if (!data.err) {
-	                        swal("성공입니다!");
-	                        $.getJSON(`${serverApiAddr}/json/studentlist/applyUpdate?lectureNo=${item.lectureNo}`,
-	            		    		function(result){
-	            		    	if(result.status == 'success'){
-	            		    		location.href = '../Student/myclass.html';
-	            		    	}
-	            		    });
-	                    } else {
-	                        swal("오류발생",
-	                            "알 수 없는 원인에 의해 오류가 발생 했습니다. 잠시 후 다시 시도해주세요. 오류가 지속된다면 고객지원센터로 문의 바랍니다."
-	                        );
-	                        console.log(data.error);
-	                    }
-	                }
-	            });
+			      $.getJSON(`${serverApiAddr}/json/apply/myApplyList`,{	
+				  	}).done(function(resultApplyList){
+				  		apply = resultApplyList;
+				  		console.log(apply);
+				  		for(var itemNo of apply.myApplyList){
+				  			console.log(itemNo);
+				  			if(`${itemNo.lectureNo}` == lNum){
+				  				swal("이미 신청한 강의입니다!")
+				  				break;
+				  			}else{
+				  				 $.ajax('../../json/studentlist/applyAdd', {
+				 	                method: 'POST',
+				 	                dataType: 'json',
+				 	                data: {
+				 	                    sNum: sNum,
+				 	                    lectureNo: lNum,
+				 	                    applyDay: chan_val,
+				 	                    applyConfirm: 1
+				 	                },
+				 	                success: function (data) {
+				 	                    if (!data.err) {
+				 	                        swal("성공입니다!");
+				 	                        $.getJSON(`${serverApiAddr}/json/studentlist/applyUpdate?lectureNo=${lNum}`,
+				 	            		    		function(result){
+				 	            		    	if(result.status == 'success'){
+				 	            		    		location.href = '../Student/myclass.html';
+				 	            		    	}
+				 	            		    });
+				 	                    } else {
+				 	                        swal("오류발생",
+				 	                            "알 수 없는 원인에 의해 오류가 발생 했습니다. 잠시 후 다시 시도해주세요. 오류가 지속된다면 고객지원센터로 문의 바랍니다."
+				 	                        );
+				 	                        console.log(data.error);
+				 	                    }
+				 	                }
+				 	            });//ajax add
+				  			}//if
+				  		}//for
+				  	});//function(result) 
 			});
 		}
 	});

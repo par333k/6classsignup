@@ -24,4 +24,6 @@ public interface LectureService {
 
     int applyUpdate(int lectureNo);
 
+    int applyUndo(int lectureNo);
+
 }

@@ -55,7 +55,7 @@
     <script src="../js/logout.js"></script>
     <script>
         setTimeout(function() {
-            $.getJSON('http://192.168.0.30:8000/member/getPro', {
+            $.getJSON('http://192.168.0.69:8000/member/getPro', {
                 id: userNum
             }).done(
                 function (result) {
@@ -87,7 +87,7 @@
                 return;
             }
 
-            $.ajax('http://192.168.0.30:8000/member/updatePro', {
+            $.ajax('http://192.168.0.69:8000/member/updatePro', {
                 method: 'POST',
                 dataType: 'json',
                 data: {
@@ -101,7 +101,7 @@
                 success: function (data) {
                     if (data == "0") {
                         swal("성공입니다!");
-                        //location.href = 'index.html';
+                       location.href = '../Lecture/list.html';
                     } else {
                         swal("오류입니다!");
                         console.log(data.error);
@@ -112,7 +112,7 @@
 
         $("#delBtn").click(function () {
 
-            $.ajax('http://192.168.0.30:8000/member/deletePro', {
+            $.ajax('http://192.168.0.69:8000/member/deletePro', {
                 method: 'POST',
                 dataType: 'json',
                 data: {
@@ -121,7 +121,7 @@
                 success: function (data) {
                     if (data == "0") {
                         swal("성공입니다!");
-                        //location.href = 'index.html';
+                        location.href = '../login.html';
                     } else {
                         swal("오류발생", "알 수 없는 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
                         console.log(data.error);
