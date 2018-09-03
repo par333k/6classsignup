@@ -20,7 +20,7 @@ $(function loadList(){
                         <td>${item.lectureStartDay}</td>
                         <td>${item.lectureEndDay}</td>
                         <td>${item.lectureMember}/${item.lectureMaxMember}</td>
-                        <td><button type="button" id="babo">폐강하기</button>`).appendTo(tbody);
+                        <td><button type="button" id="babo" class="btn btn-outline-success">폐강하기</button>`).appendTo(tbody);
 		}
 		tbody.on('click', '#babo', function(event) {
 		    event.preventDefault();

@@ -20,7 +20,7 @@ $(function loadList(){
                         <td>${item.lectureStartDay}</td>
                         <td>${item.lectureEndDay}</td>
                         <td>${item.lectureMember}/${item.lectureMaxMember}</td>
-                        <td><button type="button" id="cancel">철회하기</button>`).appendTo(tbody);
+                        <td><button type="button" id="cancel" class="btn btn-outline-success">철회하기</button>`).appendTo(tbody);
 		}
 		tbody.on('click', '#cancel', function(event) {
 		    event.preventDefault();

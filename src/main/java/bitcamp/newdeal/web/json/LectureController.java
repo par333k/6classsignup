@@ -156,7 +156,7 @@ public class LectureController {
         HashMap<String, Object> result = new HashMap<>();
         lectureService.delete(lectureNo);
         result.put("status", "success");
-        return "redirect:myList";
+        return result;
     }
 
 }

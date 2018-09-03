@@ -20,15 +20,15 @@ function loadList() {
 		console.log(result.list);
 		data = result;
 		tbody.html('');
-		if (data.loginProfessor == null) {
-			var sname = data.loginStudent.studentName;
-			var sNum = data.loginStudent.sNum;
+		if (userDiv != 'professor') {
+			var sname = userName1;
+			var sNum = userNum;
 			$("#userName").html(`${sname}님 반갑습니다
 			<button type="button" class="btn btn-success btn-sm" 
 			onclick="location.href='../Student/myclass.html'">나의강의실</button>
 			`);
 		} else {
-			var pname = data.loginProfessor.professorName;
+			var pname = userName1;
 
 			$("#userName").html(`${pname}님 반갑습니다
 			<button type="button" class="btn btn-success btn-sm" 
@@ -46,7 +46,7 @@ function loadList() {
 							<td>${item.lectureStartDay}</td>
 							<td>${item.lectureEndDay}</td>
 							<td>${item.lectureMember}/${item.lectureMaxMember}</td>
-							<td><button type="button">폐강</button></td>`).appendTo(tbody);
+							<td>모집중</td>`).appendTo(tbody);
 			}
 		} else {
 			for (var item of data.list) {
@@ -68,7 +68,7 @@ function loadList() {
 							<td>${item.lectureStartDay}</td>
 							<td>${item.lectureEndDay}</td>
 							<td>${item.lectureMember}/${item.lectureMaxMember}</td>
-							<td><button type="button" id="apply" data-no3="${item.lectureNo}">신청</button></td>`).appendTo(tbody);
+							<td><button type="button" id="apply" data-no3="${item.lectureNo}" class="btn btn-outline-success">신청</button></td>`).appendTo(tbody);
 					}
 			}
 			tbody.on('click', '#apply', function(event) {
@@ -184,7 +184,6 @@ $("#searchBtn").click(function () {
 		console.log(result.status);
 		console.log(result.list);
 		data = result;
-		var sNum = data.loginStudent.sNum;
 		console.log(data.list);
 		totalpage = 1;
 		if (userDiv == 'professor') {
@@ -197,7 +196,7 @@ $("#searchBtn").click(function () {
 							<td>${item.lectureStartDay}</td>
 							<td>${item.lectureEndDay}</td>
 							<td>${item.lectureMember}/${item.lectureMaxMember}</td>
-							<td></td>`).appendTo(tbody);
+							<td>모집중</td>`).appendTo(tbody);
 			}
 		} else {
 			for (var item of data.list) {
@@ -219,7 +218,7 @@ $("#searchBtn").click(function () {
 							<td>${item.lectureStartDay}</td>
 							<td>${item.lectureEndDay}</td>
 							<td>${item.lectureMember}/${item.lectureMaxMember}</td>
-							<td><button type="button" id="apply" data-no3="${item.lectureNo}">신청</button></td>`).appendTo(tbody);
+							<td><button type="button" id="apply" data-no3="${item.lectureNo}" class="btn btn-outline-success">신청</button></td>`).appendTo(tbody);
 					}
 			}
 			tbody.on('click', '#apply', function(event) {

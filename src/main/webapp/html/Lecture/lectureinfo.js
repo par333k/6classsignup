@@ -25,11 +25,11 @@ $(function loadList(){
                         <td>${data.list.lectureStartDay}</td>
                         <td>${data.list.lectureEndDay}</td>
                         <td>${data.list.lectureMember}/${data.list.lectureMaxMember}</td>
-                        <td><button type="button">신청</button>`).appendTo(tbody);
+                        <td><a href="../../files/${data.list.lectureFile}">다운로드</td>`).appendTo(tbody);
 
 		$("#content").html(`<h2 class="blog-post-title">강의 상세 내역</h2>
 				<p class="blog-post-meta">
-				<a href="#">${data.pname}</a>
+				<p> 담당교수 : ${data.pname} 님</p>
 				</p>
 				<p>강의 내용에는 변경사항이 있으니 자세한 문의는 조교실(02-222-2222)로 연락하거나 메일로 문의 바랍니다</p>
 				<pre>${data.list.lectureContent}</pre>`);
