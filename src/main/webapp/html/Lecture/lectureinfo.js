@@ -18,14 +18,26 @@ $(function loadList(){
 		console.log(result.list);
 		data = result;
 		tbody.html('');
-		$("<tr>").html(`<th scope="row">${data.list.lectureNo}</th>
-                        <td>${data.list.lectureSubject}</td>
-                        <td>${data.list.lectureName}</td>
-                        <td>${data.list.lectureRoom}</td>
-                        <td>${data.list.lectureStartDay}</td>
-                        <td>${data.list.lectureEndDay}</td>
-                        <td>${data.list.lectureMember}/${data.list.lectureMaxMember}</td>
-                        <td><a href="../../files/${data.list.lectureFile}">다운로드</td>`).appendTo(tbody);
+		if('${data.list.lectureFile}'== null){
+			$("<tr>").html(`<th scope="row">${data.list.lectureNo}</th>
+                    <td>${data.list.lectureSubject}</td>
+                    <td>${data.list.lectureName}</td>
+                    <td>${data.list.lectureRoom}</td>
+                    <td>${data.list.lectureStartDay}</td>
+                    <td>${data.list.lectureEndDay}</td>
+                    <td>${data.list.lectureMember}/${data.list.lectureMaxMember}</td>
+                    <td>강의자료없음</td>`).appendTo(tbody);
+		}else{
+			$("<tr>").html(`<th scope="row">${data.list.lectureNo}</th>
+                    <td>${data.list.lectureSubject}</td>
+                    <td>${data.list.lectureName}</td>
+                    <td>${data.list.lectureRoom}</td>
+                    <td>${data.list.lectureStartDay}</td>
+                    <td>${data.list.lectureEndDay}</td>
+                    <td>${data.list.lectureMember}/${data.list.lectureMaxMember}</td>
+                    <td><a href="../../files/${data.list.lectureFile}">다운로드</td>`).appendTo(tbody);
+		}
+
 
 		$("#content").html(`<h2 class="blog-post-title">강의 상세 내역</h2>
 				<p class="blog-post-meta">
