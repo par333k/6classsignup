@@ -27,8 +27,7 @@ $(function loadList(){
 		    $.getJSON(`${serverApiAddr}/json/lecture/delete?lectureNo=${item.lectureNo}`,
 		    		function(result){
 		    	if(result.status == 'success'){
-		    		alert('삭제성공!')
-		    		location.href = `mylecture.html`;
+		    		swal('삭제성공!').then(result=>{location.href = `mylecture.html`;})
 		    	}
 		    });  
 		});
