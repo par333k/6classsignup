@@ -1,20 +1,31 @@
 'use strict'
 
+var {page, size} = $.parseQuery(location.href);
+
 let tbody = $('#eListTable > tbody');
 let data = null;
-let page = 1;
-let totalpage = 10;
 let apply = null;
+let totalpage = 10;
 
-$.getJSON(`${serverApiAddr}/json/lecture/totalpage`, {}).done(function (result) {
-	console.log(result);
-	totalpage = result;
+if (page != undefined && size != undefined) {
+    loadList(page, size);
+} else {
+    loadList(1, 5);
+}
+
+$('#prevPage').click(function () {
+	loadList(data.page - 1, data.size);
 });
 
-function loadList() {
+$('#nextPage').click(function () {
+	loadList(data.page + 1, data.size);
+});
+
+function loadList(page, size) {
 	console.log('로드됨!');
 	$.getJSON(`${serverApiAddr}/json/lecture/list`, {
-		'page': page
+		page: page,
+		size: size
 	}).done(function (result) {
 		console.log(result.status);
 		console.log(result.list);
@@ -48,6 +59,17 @@ function loadList() {
 							<td>${item.lectureMember}/${item.lectureMaxMember}</td>
 							<td>모집중</td>`).appendTo(tbody);
 			}
+			 $(ePageNo).html(data.page);
+			 console.log(data.page);
+		       if (data.page <= 1)
+		           $('#prevPage').attr('disabled', '');
+		       else 
+		           $('#prevPage').removeAttr('disabled');
+		       
+		       if (data.page >= data.totalPage)
+		           $('#nextPage').attr('disabled', '');
+		       else
+		           $('#nextPage').removeAttr('disabled');
 		} else {
 			for (var item of data.list) {
 				console.log(item);
@@ -71,6 +93,17 @@ function loadList() {
 							<td><button type="button" id="apply" data-no3="${item.lectureNo}" class="btn btn-outline-success">신청</button></td>`).appendTo(tbody);
 					}
 			}
+			 $('#ePageNo').html(data.page);
+		       if (data.page <= 1)
+		           $('#prevPage').attr('disabled', '');
+		       else 
+		           $('#prevPage').removeAttr('disabled');
+		       
+		       if (data.page >= data.totalPage)
+		           $('#nextPage').attr('disabled', '');
+		       else
+		           $('#nextPage').removeAttr('disabled');
+			
 			tbody.on('click', '#apply', function(event) {
 			    event.preventDefault();
 			      var lNum = $(event.target).attr('data-no3');
@@ -154,19 +187,7 @@ function loadList() {
 	});
 }
 
-loadList();
 
-$('#nextPage').click(function () {
-	if (page >= totalpage) return;
-	page++;
-	loadList();
-});
-
-$('#prevPage').click(function () {
-	if (page <= 1) return;
-	page--;
-	loadList();
-});
 
 tbody.on('click', 'a.viewLink', function (event) {
 	event.preventDefault();

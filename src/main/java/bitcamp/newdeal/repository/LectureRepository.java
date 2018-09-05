@@ -1,12 +1,13 @@
 package bitcamp.newdeal.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import bitcamp.newdeal.domain.Lecture;
 
 public interface LectureRepository {
 
-    List<Lecture> lectureList(int start);
+    List<Lecture> lectureList(Map<String, Object> params);
     
     Lecture selectOne(int lNum);
     

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,16 +33,14 @@ public class LectureController {
 
     @Autowired
     ServletContext sc;
-    
-    @GetMapping("totalpage")
-    public Object totalPage() {
-        return lectureService.getTotalPage();
-    }
+
 
     @GetMapping("list")
-    public Object list(int page, HttpSession session) {
+    public Object list(@RequestParam(defaultValue="1") int page,
+                       @RequestParam(defaultValue="5") int size,
+            HttpSession session) throws Exception {
         HashMap<String, Object> result = new HashMap<>();
-
+            
         if (session.getAttribute("loginStudent") != null) {
             Student loginStudent = (Student) session.getAttribute("loginStudent");
             result.put("loginStudent", loginStudent);
@@ -50,14 +49,18 @@ public class LectureController {
             Professor loginProfessor = (Professor) session.getAttribute("loginProfessor");
             result.put("loginProfessor", loginProfessor);
         }
-        
-        int start = (page-1) * 10;
+           
+        if(page < 1) page =1;
+        if(size < 1 || size >20) size =5;
 
-        List<Lecture> list = lectureService.list(start);
+        List<Lecture> list = lectureService.list(page, size);
         System.out.println(list);
 
         result.put("status", "success");
         result.put("list", list);
+        result.put("page", page);
+        result.put("size", size);
+        result.put("totalPage", lectureService.getTotalPage(size));
         return result;
     }
 

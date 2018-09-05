@@ -6,7 +6,7 @@ import bitcamp.newdeal.domain.Lecture;
 
 public interface LectureService {
 
-    List<Lecture> list(int start); 
+    List<Lecture> list(int page, int size); 
     
     Lecture get(int lNum);
     
@@ -20,10 +20,10 @@ public interface LectureService {
 
     List<Lecture> listSearch(String keyword);
 
-    int getTotalPage();
-
     int applyUpdate(int lectureNo);
 
     int applyUndo(int lectureNo);
+
+    int getTotalPage(int size);
 
 }

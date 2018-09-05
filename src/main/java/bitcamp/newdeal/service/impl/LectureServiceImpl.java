@@ -1,5 +1,6 @@
 package bitcamp.newdeal.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,11 @@ public class LectureServiceImpl implements LectureService {
     @Autowired LectureRepository lectureRepository;
     
     @Override
-    public List<Lecture> list(int start) {
-        
-        return lectureRepository.lectureList(start);
+    public List<Lecture> list(int page, int size) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("startIndex", (page - 1) * size);
+        params.put("pageSize", size);
+        return lectureRepository.lectureList(params);
     }
 
     @Override
@@ -56,8 +59,12 @@ public class LectureServiceImpl implements LectureService {
     }
 
     @Override
-    public int getTotalPage() {
-        return lectureRepository.getTotalPage()/10 + 1;
+    public int getTotalPage(int size) {
+        int count = lectureRepository.getTotalPage();
+        int totalPage = count / size;
+        if (count % size > 0)
+            totalPage++;
+        return totalPage;
     }
 
     @Override

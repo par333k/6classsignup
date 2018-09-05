@@ -21,7 +21,7 @@
         </div>
         <br>
         <div class="pagetitle">
-            <h2>강의목록</h2>
+            <h2><a href="">강의목록</a></h2>
         </div>
         <div class="list-container logpad">
             <table id="eListTable" class="table table-hover">
@@ -51,23 +51,32 @@
             </div>
         </div>
 
-        <nav aria-label="Page navigation">
+        <div class="pagination justify-content-center">
+            <button id="prevPage" class="btn btn-outline-secondary btn-sm">이전</button>
+            &nbsp;&nbsp;<span id="ePageNo"></span>&nbsp;&nbsp;
+            <button id="nextPage" class="btn btn-outline-secondary btn-sm">다음</button>
+        </div>
+
+
+       <!--  <nav aria-label="Page navigation">
             <ul class="pagination col-md-1" style="margin: auto;">
-                <!-- disabled -->
+                disabled
                 <li class="page-item">
                     <a class="page-link" href="#" id="prevPage">&laquo;</a>
                 </li>
+                
                 <li class="page-item">
                     <a class="page-link" href="#" id="nextPage">&raquo;</a>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
     </div>
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/common.js"></script>
+    <script src="../js/jquery.bit.js"></script>
     <script src="../js/loaduser.js"></script>
     <script src="../js/logout.js"></script>
     <script src="list.js"></script>

@@ -20,9 +20,12 @@
 		<result column="lTime" property="lectureTime" />
 	</resultMap>
 
-	<select id="lectureList" parameterType="int"
+	<select id="lectureList" parameterType="map"
 		resultMap="lectureMap">
-		select * from P3_Lecture limit #{start}, 10
+		select * from P3_Lecture 
+		 <if test="startIndex != null and pageSize != null">
+		limit #{startIndex}, #{pageSize}
+		</if>
 	</select>
 	
 	<select id="getTotalPage" resultType="int">
