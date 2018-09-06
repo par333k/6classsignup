@@ -5,7 +5,6 @@ let data = null;
 
 
 $(function loadList(){
-	console.log('로드됨!');
 	$.getJSON(`${serverApiAddr}/json/apply/myApplyList`,{}).done(function(resultApplyList){
 		data = resultApplyList;
 		tbody.html('');

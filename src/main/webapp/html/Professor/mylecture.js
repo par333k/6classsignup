@@ -5,11 +5,8 @@ let data = null;
 
 
 $(function loadList(){
-	console.log('로드됨!');
 	$.getJSON(`${serverApiAddr}/json/lecture/myList`,{	
 	}).done(function(result){
-		console.log(result.status);
-		console.log(result.myList);
 		data = result;
 		tbody.html('');
 		for(var item of data.myList){
@@ -27,7 +24,7 @@ $(function loadList(){
 		    $.getJSON(`${serverApiAddr}/json/lecture/delete?lectureNo=${item.lectureNo}`,
 		    		function(result){
 		    	if(result.status == 'success'){
-		    		swal('삭제성공!').then(result=>{location.href = `mylecture.html`;})
+		    		swal('강의를 폐강하였습니다').then(result=>{location.href = `mylecture.html`;})
 		    	}
 		    });  
 		});

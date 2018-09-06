@@ -22,13 +22,10 @@ $('#nextPage').click(function () {
 });
 
 function loadList(page, size) {
-	console.log('로드됨!');
 	$.getJSON(`${serverApiAddr}/json/lecture/list`, {
 		page: page,
 		size: size
 	}).done(function (result) {
-		console.log(result.status);
-		console.log(result.list);
 		data = result;
 		tbody.html('');
 		if (userDiv != 'professor') {
@@ -46,10 +43,8 @@ function loadList(page, size) {
 			onclick="location.href='../Professor/mylecture.html'">나의강의실</button>
 			`);
 		};
-		console.log(data.list);
 		if (userDiv == 'professor') {
 			for (var item of data.list) {
-				console.log(item);
 				$("<tr>").html(` <th scope="row">${item.lectureNo}</th>
 							<td>${item.lectureSubject}</td>
 							<td><a href="lectureinfo.html" data-no="${item.lectureNo}" data-no2="${item.pNum}" class="viewLink">${item.lectureName}</a></td>
@@ -60,7 +55,6 @@ function loadList(page, size) {
 							<td>모집중</td>`).appendTo(tbody);
 			}
 			 $(ePageNo).html(data.page);
-			 console.log(data.page);
 		       if (data.page <= 1)
 		           $('#prevPage').attr('disabled', '');
 		       else 
@@ -72,7 +66,6 @@ function loadList(page, size) {
 		           $('#nextPage').removeAttr('disabled');
 		} else {
 			for (var item of data.list) {
-				console.log(item);
 				if(`${item.lectureMember}`==`${item.lectureMaxMember}`){
 					$("<tr>").html(` <th scope="row" id="lno">${item.lectureNo}</th>
 							<td>${item.lectureSubject}</td>
@@ -107,7 +100,6 @@ function loadList(page, size) {
 			tbody.on('click', '#apply', function(event) {
 			    event.preventDefault();
 			      var lNum = $(event.target).attr('data-no3');
-			      console.log(lNum);
 			      var now = new Date();
 			      var year= now.getFullYear();
 			      var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
@@ -145,9 +137,7 @@ function loadList(page, size) {
 		 	            });//ajax add
 			  		}
 			  		apply = resultApplyList;
-			  		console.log(apply);
 			  		for(var itemNo of apply.myApplyList){
-			  			console.log(itemNo);
 			  			if(`${itemNo.lectureNo}` == lNum){
 			  				swal("이미 신청한 강의입니다!")
 			  				break;
@@ -202,14 +192,10 @@ $("#searchBtn").click(function () {
 	$.getJSON(`${serverApiAddr}/json/lecture/listsearch`, {
 		'keyword': $('#search-input').val()
 	}).done(function (result) {
-		console.log(result.status);
-		console.log(result.list);
 		data = result;
-		console.log(data.list);
 		totalpage = 1;
 		if (userDiv == 'professor') {
 			for (var item of data.list) {
-				console.log(item);
 				$("<tr>").html(` <th scope="row">${item.lectureNo}</th>
 							<td>${item.lectureSubject}</td>
 							<td><a href="lectureinfo.html" data-no="${item.lectureNo}" data-no2="${item.pNum}" class="viewLink">${item.lectureName}</a></td>
@@ -221,7 +207,6 @@ $("#searchBtn").click(function () {
 			}
 		} else {
 			for (var item of data.list) {
-				console.log(item);
 				if(`${item.lectureMember}`==`${item.lectureMaxMember}`){
 					$("<tr>").html(` <th scope="row" id="lno">${item.lectureNo}</th>
 							<td>${item.lectureSubject}</td>
@@ -254,9 +239,7 @@ $("#searchBtn").click(function () {
 			      $.getJSON(`${serverApiAddr}/json/apply/myApplyList`,{	
 				  	}).done(function(resultApplyList){
 				  		apply = resultApplyList;
-				  		console.log(apply);
 				  		for(var itemNo of apply.myApplyList){
-				  			console.log(itemNo);
 				  			if(`${itemNo.lectureNo}` == lNum){
 				  				swal("이미 신청한 강의입니다!")
 				  				break;
@@ -281,7 +264,7 @@ $("#searchBtn").click(function () {
 				 	            		    });
 				 	                    } else {
 				 	                        swal("오류발생",
-				 	                            "알 수 없는 원인에 의해 오류가 발생 했습니다. 잠시 후 다시 시도해주세요. 오류가 지속된다면 고객지원센터로 문의 바랍니다."
+				 	                            "알 수 없는 원인에 의해 오류가 발생 했습니다. 잠시 후 다시 시도해주세요."
 				 	                        );
 				 	                        console.log(data.error);
 				 	                    }

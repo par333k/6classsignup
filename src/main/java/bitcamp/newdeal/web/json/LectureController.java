@@ -45,7 +45,7 @@ public class LectureController {
             Student loginStudent = (Student) session.getAttribute("loginStudent");
             result.put("loginStudent", loginStudent);
         } else if (session.getAttribute("loginProfessor") != null) {
-            System.out.println("있음");
+            
             Professor loginProfessor = (Professor) session.getAttribute("loginProfessor");
             result.put("loginProfessor", loginProfessor);
         }
@@ -54,8 +54,7 @@ public class LectureController {
         if(size < 1 || size >20) size =5;
 
         List<Lecture> list = lectureService.list(page, size);
-        System.out.println(list);
-
+       
         result.put("status", "success");
         result.put("list", list);
         result.put("page", page);
@@ -99,14 +98,14 @@ public class LectureController {
             Student loginStudent = (Student) session.getAttribute("loginStudent");
             result.put("loginStudent", loginStudent);
         } else if (session.getAttribute("loginProfessor") != null) {
-            System.out.println("있음");
+            
             Professor loginProfessor = (Professor) session.getAttribute("loginProfessor");
             result.put("loginProfessor", loginProfessor);
         }
 
         List<Lecture> list = lectureService.listSearch(keyword);
 
-        System.out.println(list.get(0).toString());
+        
         result.put("status", "success");
         result.put("list", list);
         return result;
@@ -114,7 +113,7 @@ public class LectureController {
 
     @RequestMapping("insert")
     public Object insert(MultipartFile file) {
-        System.out.println("=============start insert controller..");
+       
 
         String newfilename = UUID.randomUUID().toString();
         String path = sc.getRealPath("/files/" + newfilename);
@@ -133,7 +132,7 @@ public class LectureController {
 
     @RequestMapping("add")
     public Object insert(Lecture lecture) {
-        System.out.println("=============start add controller..");
+        
         
         
         HashMap<String, Object> result = new HashMap<>();
@@ -144,7 +143,7 @@ public class LectureController {
 
     @RequestMapping("update")
     public Object update(Lecture lecture) {
-        System.out.println("=============start update controller..");
+        
 
         HashMap<String, Object> result = new HashMap<>();
         lectureService.update(lecture);
@@ -154,7 +153,7 @@ public class LectureController {
 
     @RequestMapping("delete")
     public Object delete(int lectureNo) {
-        System.out.println("=============start delete controller..");
+        
 
         HashMap<String, Object> result = new HashMap<>();
         lectureService.delete(lectureNo);

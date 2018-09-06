@@ -12,10 +12,8 @@ for(var param of values){
 
 
 $(function loadList(){
-	console.log('로드됨!');
 	$.getJSON(`${serverApiAddr}/json/lecture/view?lNum=${lNum}&pNum=${pNum}`,{	
 	}).done(function(result){
-		console.log(result.list);
 		data = result;
 		tbody.html('');
 			if(`${data.list.lectureFile}` == 'null'){
@@ -37,12 +35,26 @@ $(function loadList(){
                     <td>${data.list.lectureMember}/${data.list.lectureMaxMember}</td>
                     <td><a href="../../files/${data.list.lectureFile}">다운로드</td>`).appendTo(tbody);
 				}
-		$("#content").html(`<h2 class="blog-post-title">강의 상세 내역</h2>
-				<p class="blog-post-meta">
-				<p> 담당교수 : ${data.pname} 님</p>
-				</p>
-				<p>강의 내용에는 변경사항이 있으니 자세한 문의는 조교실(02-222-2222)로 연락하거나 메일로 문의 바랍니다</p>
-				<pre>${data.list.lectureContent}</pre>`);
+		if(userName1 == `${data.pname}`){
+			$("#content").html(`<h2 class="blog-post-title">강의 상세 내역</h2>
+					<p class="blog-post-meta">
+					<p> 담당교수 : ${data.pname} 님</p>
+					</p>
+					<p>강의 내용에는 변경사항이 있으니 자세한 문의는 조교실(02-222-2222)로 연락하거나 메일로 문의 바랍니다</p>
+					<pre>${data.list.lectureContent}</pre>
+					<button type="button" id="lUpdate" class="btn btn-primary small">수정하기</button>`);
+		}else{
+			$("#content").html(`<h2 class="blog-post-title">강의 상세 내역</h2>
+					<p class="blog-post-meta">
+					<p> 담당교수 : ${data.pname} 님</p>
+					</p>
+					<p>강의 내용에는 변경사항이 있으니 자세한 문의는 조교실(02-222-2222)로 연락하거나 메일로 문의 바랍니다</p>
+					<pre>${data.list.lectureContent}</pre>`);
+		}
+		$('#lUpdate').click(function(event){
+			event.preventDefault();
+			location.href = `lectureupdate.html?lNum=${lNum}&pNum=${pNum}`
+		});
 	});
 });
 
